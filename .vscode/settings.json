@@ -1,0 +1,27 @@
+{
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "emmet.includeLanguages": {
+      "django-html": "html"
+    },
+    "[python]": {
+      "editor.defaultFormatter": "eeyore.yapf",
+      "editor.codeActionsOnSave": {
+        "source.organizeImports.ruff": "explicit"
+      }
+    },
+    // "[django-html]": {
+    //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // },
+    "editor.formatOnSave": true,
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "search.exclude": {
+      "**/.yarn": true,
+      "**/.pnp.*": true
+    },
+    "cSpell.words": [
+      "Lates"
+    ]
+  }
