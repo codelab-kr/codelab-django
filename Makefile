@@ -27,6 +27,7 @@ help:
 	@echo "  shell               Open the Django shell."
 	@echo "  test                Run the test suite."
 	@echo "  tree                Display the project directory structure."
+	@echo "  css 				 tailwind start"
 
 # __init__ 파일 생성
 .PHONY: init
@@ -78,3 +79,8 @@ test:
 .PHONY: tree
 tree:
 	tree -I '__pycache__|*.pyc|*.pyo'
+
+# tailwind 실행
+.PHONY: css
+css:
+	$(MANAGE_PY) tailwind start

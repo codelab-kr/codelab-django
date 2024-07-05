@@ -1,4 +1,4 @@
-### 특징
+## 특징
 모노레포와 MSA를 결합
 
 ## 기본 환경구성
@@ -90,9 +90,7 @@ urlpatterns = [
 # name = 'blog'
 name = 'apps.blog'
 ❯ vi base/settings.py
-INSTALLED_APPS = [
-  'apps.blog'  # add as a string
-]
+INSTALLED_APPS = [...'apps.blog']
 ```
 
 ### Run server
@@ -102,5 +100,30 @@ INSTALLED_APPS = [
 http://127.0.0.1:8000/api/auth/users/ 접속
 
 
+### Add tailwind
 
+https://django-tailwind.readthedocs.io/en/latest/installation.html
 
+Install
+```shell
+❯ poetry add 'django-tailwind[reload]'
+❯ vi services/base/base/settings.py
+INSTALLED_APPS = [...'tailwind']
+❯ poetry run python -m services.base.manage tailwind init
+❯ vi services/base/base/settings.py
+ALLOWED_HOSTS = ['127.0.0.1']
+INTERNAL_IPS = ['127.0.0.1']
+INSTALLED_APPS = [...'theme']
+TAILWIND_APP_NAME = 'theme'
+if DEBUG:  # type: ignore # noqa: F821
+    INSTALLED_APPS.extend(['django_browser_reload'])  # type: ignore # noqa: F821
+    MIDDLEWARE.insert(-1, 'django_browser_reload.middleware.BrowserReloadMiddleware')  # type: ignore # noqa: F821
+❯ poetry run python -m services.base.manage tailwind install
+❯ vi services/base/base/urls.py
+ path("__reload__/", include("django_browser_reload.urls")),
+```
+
+Use
+```html
+
+```

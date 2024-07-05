@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-*!ixa3sx6*+8&v13apjd7*wgcvvo#40xnycs4!k9qm0t_e-$a%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['127.0.0.1']
+INTERNAL_IPS = ['127.0.0.1']
 
 # Application definition
 
@@ -39,6 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'common.auth',
     'apps.blog',
+    'tailwind',
+    'theme',
+    # 'django_browser_reload',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +54,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:  # type: ignore # noqa: F821
+    INSTALLED_APPS.extend(['django_browser_reload'])  # type: ignore # noqa: F821
+    MIDDLEWARE.insert(-1, 'django_browser_reload.middleware.BrowserReloadMiddleware')  # type: ignore # noqa: F821
 
 ROOT_URLCONF = 'base.urls'
 
@@ -122,3 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user model 설정
 AUTH_USER_MODEL = 'common_auth.CustomUser'
+
+# Tailwind 설정
+TAILWIND_APP_NAME = 'theme'
