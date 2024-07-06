@@ -174,4 +174,21 @@ TEMPLATES = [
 ## TODO
 - [x] post app 간단 버전으로 추가
 - [x] tailwind & 오토 리로드 확인
-- [ ] 설정 파일 분리
+- [x] 설정 파일 분리
+
+
+
+```shell
+❯ poetry run python -m services.blog.manage test services.blog.apps.post.tests
+/Users/codelab/Documents/works/django_starter
+Found 2 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+OK
+Destroying test database for alias 'default'...
+
+```

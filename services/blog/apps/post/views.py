@@ -5,13 +5,13 @@ from . import forms
 from .models import Post
 
 
-def home(request):
+def post_list(request):
     posts = Post.objects.all()
     return render(request, 'post/post.html', {'posts': posts})
 
 
 @require_http_methods(['GET', 'POST'])
-def create(request):
+def post_create(request):
     if request.method == 'POST':
         form = forms.CreatePost(request.POST)
         if form.is_valid():

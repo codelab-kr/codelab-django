@@ -8,6 +8,7 @@ class Post(models.Model):
     image = models.URLField(max_length=500)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(
         max_length=100,
         default=uuid.uuid4,  # type: ignore

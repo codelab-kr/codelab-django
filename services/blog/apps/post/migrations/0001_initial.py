@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 (
                     'id',
                     models.CharField(
-                        default=uuid.uuid4,
+                        default=uuid.uuid4,  # type: ignore
                         editable=False,
                         max_length=100,
                         primary_key=True,
