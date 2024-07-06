@@ -1,6 +1,6 @@
 # 프로젝트 설정
-PROJECT_MODULE := services.base
-SETTINGS_MODULE := services.base.base.settings
+PROJECT_MODULE := services.blog
+SETTINGS_MODULE := services.blog.blog.settings
 
 # Python 및 Poetry 명령어
 PYTHON := poetry run python
@@ -53,7 +53,7 @@ migrations:
 # common.auth 마이그레이션 파일 생성
 .PHONY: migrations-auth
 migrations-auth:
-	$(MANAGE_PY) makemigrations common.auth
+	$(MANAGE_PY) makemigrations common_auth
 
 # 데이터베이스 마이그레이션 적용
 .PHONY: migrate

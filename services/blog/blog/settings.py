@@ -9,9 +9,9 @@ else:
     from common.settings.development import *
 
 INSTALLED_APPS += [  # type: ignore
-    'services.base.apps.blog',
+    'services.blog.apps.post',
 ]
 
-ROOT_URLCONF = 'services.base.base.urls'
+ROOT_URLCONF = 'services.blog.blog.urls'
 
-WSGI_APPLICATION = 'services.base.base.wsgi.application'
+WSGI_APPLICATION = 'services.blog.blog.wsgi.application'

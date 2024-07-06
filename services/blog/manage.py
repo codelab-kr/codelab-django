@@ -6,11 +6,9 @@ from pathlib import Path
 
 def main():
     BASE_DIR = Path(__file__).resolve().parent.parent.parent
-    sys.path.insert(0, os.path.join(BASE_DIR, 'services/base'))
-    # print(sys.path)
+    sys.path.insert(0, str(BASE_DIR / 'services' / 'blog'))
 
-    # Ensure the settings module is correctly set
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'base.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'services.blog.blog.settings')
 
     try:
         from django.core.management import execute_from_command_line

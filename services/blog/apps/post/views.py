@@ -7,7 +7,7 @@ from .models import Post
 
 def home(request):
     posts = Post.objects.all()
-    return render(request, 'blog/post.html', {'posts': posts})
+    return render(request, 'post/post.html', {'posts': posts})
 
 
 @require_http_methods(['GET', 'POST'])
@@ -20,4 +20,4 @@ def create(request):
             new_post.save()
             return redirect('home')
     form = forms.CreatePost()
-    return render(request, 'blog/create.html', {'form': form})
+    return render(request, 'post/create.html', {'form': form})

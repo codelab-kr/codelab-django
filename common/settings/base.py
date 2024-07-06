@@ -34,13 +34,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'base.urls'
+ROOT_URLCONF = 'blog.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'services' / 'base' / 'templates',  # 서비스별 템플릿
+            BASE_DIR / 'services' / 'blog' / 'templates',  # 서비스별 템플릿
             BASE_DIR / 'common' / 'templates'  # 공통 템플릿
         ],
         'APP_DIRS': True,
@@ -55,7 +55,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'base.wsgi.application'
+WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -95,5 +95,5 @@ TAILWIND_APP_NAME = 'theme'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'common/static',  # 공통 정적 파일
-    BASE_DIR / 'services' / 'base' / 'static',  # 서비스별 정적 파일
+    BASE_DIR / 'services' / 'blog' / 'static',  # 서비스별 정적 파일
 ]
