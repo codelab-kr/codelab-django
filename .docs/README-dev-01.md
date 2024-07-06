@@ -88,9 +88,18 @@ urlpatterns = [
 ❯ python manage.py startapp blog apps/blog
 ❯ vi apps/blog/apps.py
 # name = 'blog'
-name = 'apps.blog'
+name = 'services.base.apps.blog'
 ❯ vi base/settings.py
-INSTALLED_APPS = [...'apps.blog']
+INSTALLED_APPS = [...'services.base.apps.blog']
+❯ poetry run python -m services.base.manage makemigrations blog
+Migrations for 'blog':
+  services/base/apps/blog/migrations/0001_initial.py
+    - Create model Post
+❯ poetry run python -m services.base.manage migrate
+Operations to perform:
+  Apply all migrations: admin, auth, blog, common_auth, contenttypes, sessions
+Running migrations:
+  Applying blog.0001_initial... OK
 ```
 
 ### Run server
@@ -126,4 +135,43 @@ if DEBUG:  # type: ignore # noqa: F821
 Use
 ```html
 
+
 ```
+
+### Add templates
+```shell
+└── services
+    └── base
+        ├── base
+        │   ├── __init__.py
+        │   ├── asgi.py
+        │   ├── settings.py
+        │   ├── templates
+        │   │   ├── base.html
+        │   │   ├── home.html
+        │   │   └── includes
+        │   │       ├── header.html
+        │   │       ├── hero.html
+        │   │       └── sidebar.html
+        │   ├── urls.py
+        │   └── wsgi.py
+        └── manage.py
+vi services/base/base/settings.py
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'services/base/templates')],  # add
+        ...
+        },
+    },
+]
+```
+
+
+
+
+----
+## TODO
+- [x] blog app 간단 버전으로 추가
+- [x] tailwind & 오토 리로드 확인
+- [ ] 설정 파일 분리

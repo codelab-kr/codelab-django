@@ -1,0 +1,50 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon"
+              type="image/x-icon"
+              href="{% static 'favicon.ico' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+              rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+                defer></script>
+        <title>
+            {% block title %}Awesome Django App{% endblock %}
+        </title>
+        {% tailwind_css %}
+    </head>
+    <body class="bg-gray-100">
+        {% include 'includes/header.html' %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                        {{ message|safe }}
+                        <a href="#" class="close">x</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% block layout %}
+            <div id="content" class="block max-w-3xl mx-auto my-12 px-6">
+                {% block content %}{% endblock %}
+            </div>
+        {% endblock %}
+        <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+        <script>
+          const csrftoken = Cookies.get('csrftoken');
+          document.addEventListener('DOMContentLoaded', (event) => {
+            // DOM loaded
+            {% block domready %}
+            {% endblock %}
+          })
+        </script>
+    </body>
+</html>

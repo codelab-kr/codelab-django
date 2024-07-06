@@ -20,10 +20,10 @@ help:
 	@echo "  init				 Make __init__ files in python dirs"
 	@echo "  install             Install dependencies using Poetry."
 	@echo "  runserver           Run the Django development server."
-	@echo "  makemigrations      Create new database migrations."
-	@echo "  makemigrations-auth Create new database migrations for common.auth."
+	@echo "  migrations      	 Create new database migrations."
+	@echo "  migrations-auth 	 Create new database migrations for common.auth."
 	@echo "  migrate             Apply database migrations."
-	@echo "  createsuperuser     Create a superuser for the Django admin."
+	@echo "  superuser    		 Create a superuser for the Django admin."
 	@echo "  shell               Open the Django shell."
 	@echo "  test                Run the test suite."
 	@echo "  tree                Display the project directory structure."
@@ -46,13 +46,13 @@ runserver:
 	$(MANAGE_PY) runserver
 
 # 마이그레이션 파일 생성
-.PHONY: makemigrations
-makemigrations:
+.PHONY: migrations
+migrations:
 	$(MANAGE_PY) makemigrations
 
 # common.auth 마이그레이션 파일 생성
-.PHONY: makemigrations-auth
-makemigrations-auth:
+.PHONY: migrations-auth
+migrations-auth:
 	$(MANAGE_PY) makemigrations common.auth
 
 # 데이터베이스 마이그레이션 적용
@@ -61,8 +61,8 @@ migrate:
 	$(MANAGE_PY) migrate
 
 # 슈퍼유저 생성
-.PHONY: createsuperuser
-createsuperuser:
+.PHONY: superuser
+superuser:
 	$(MANAGE_PY) createsuperuser
 
 # Django 쉘 실행
@@ -78,7 +78,7 @@ test:
 # 프로젝트 디렉토리 구조 출력
 .PHONY: tree
 tree:
-	tree -I '__pycache__|*.pyc|*.pyo'
+	tree -I '__pycache__|*.pyc|*.pyo|theme'
 
 # tailwind 실행
 .PHONY: css
