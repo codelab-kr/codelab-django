@@ -25,9 +25,7 @@ class Migration(migrations.Migration):
                         max_length=100,
                         primary_key=True,
                         serialize=False,
-                        unique=True
-                    )
-                ),
+                        unique=True)),
             ],
             options={
                 'ordering': ['-created'],

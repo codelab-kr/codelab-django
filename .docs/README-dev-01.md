@@ -192,3 +192,19 @@ OK
 Destroying test database for alias 'default'...
 
 ```
+
+
+## cf. poetry 대신 setup.cfg, setup.py 이용 시
+```shell
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+# pip install -r requirements.txt
+
+pip install .
+❯ python -m services.blog.manage runserver
+
+pre-commit install
+pre-commit run --all-files
+
+
+```

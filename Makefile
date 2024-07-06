@@ -2,8 +2,8 @@
 PROJECT_MODULE := services.blog
 SETTINGS_MODULE := services.blog.blog.settings
 
-# Python 및 Poetry 명령어
-PYTHON := poetry run python
+# Python 명령어
+PYTHON := python
 MANAGE_PY := $(PYTHON) -m $(PROJECT_MODULE).manage
 
 # 기본 목표
@@ -28,6 +28,7 @@ help:
 	@echo "  test                Run the test suite."
 	@echo "  tree                Display the project directory structure."
 	@echo "  css 				 tailwind start"
+	@echo "  requirements		 Create requirements.txt file"
 
 # __init__ 파일 생성
 .PHONY: init
@@ -35,10 +36,9 @@ init:
 	python scripts/add_init.py
 
 # 종속성 설치
-#  && (cd theme; cd static_src; npm install;)
 .PHONY: install
 install:
-	poetry install --no-root
+	pip install . && (cd theme; cd static_src; npm install;)
 
 # Django 개발 서버 실행
 .PHONY: runserver
@@ -84,3 +84,8 @@ tree:
 .PHONY: css
 css:
 	$(MANAGE_PY) tailwind start
+
+# requirements 생성
+.PHONY: requirements
+requirements:
+	pip freeze > requirements.txt

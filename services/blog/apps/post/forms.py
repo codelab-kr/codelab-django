@@ -12,9 +12,11 @@ class CreatePost(forms.ModelForm):
             'body': 'Caption',
         }
         widgets = {
-            'body': forms.Textarea(attrs={
-                'rows': 3,
-                'placeholder': 'Add a caption',
-                'class': 'font1 text-4xl',
-            }),
+            'body':
+            forms.Textarea(
+                attrs={
+                    'rows': 3,
+                    'placeholder': 'Add a caption',
+                    'class': 'font1 text-4xl',
+                }),
         }

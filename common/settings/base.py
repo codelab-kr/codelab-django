@@ -38,12 +38,14 @@ ROOT_URLCONF = 'blog.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'BACKEND':
+        'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'services' / 'blog' / 'templates',  # 서비스별 템플릿
             BASE_DIR / 'common' / 'templates'  # 공통 템플릿
         ],
-        'APP_DIRS': True,
+        'APP_DIRS':
+        True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -66,16 +68,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
