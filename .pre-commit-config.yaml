@@ -36,11 +36,11 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies: [types-requests, types-PyYAML, types-toml]
-  # - repo: local
-  #   hooks:
-  #   - id: build-tailwind
-  #     name: Build Tailwind
-  #     entry: poetry run python -m .....manage tailwind build
-  #     language: system
-  #     pass_filenames: false
-  #     stages: [commit]
+  - repo: local
+    hooks:
+      - id: build-tailwind
+        name: Build Tailwind
+        entry: python -m services.blog.manage tailwind build
+        language: system
+        pass_filenames: false
+        stages: [commit]

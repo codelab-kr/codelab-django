@@ -17,43 +17,49 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  help                Show this help message."
-	@echo "  init				 Make __init__ files in python dirs"
-	@echo "  install             Install dependencies using Poetry."
+	@echo "  add-init			 Make __init__ files in python dirs"
+	@echo "  venv	             Create venv and activate venv."
+	@echo "  install             Install dependencies."
 	@echo "  runserver           Run the Django development server."
 	@echo "  migrations      	 Create new database migrations."
-	@echo "  migrations-auth 	 Create new database migrations for common.auth."
 	@echo "  migrate             Apply database migrations."
 	@echo "  superuser    		 Create a superuser for the Django admin."
 	@echo "  shell               Open the Django shell."
 	@echo "  test                Run the test suite."
 	@echo "  tree                Display the project directory structure."
 	@echo "  css 				 tailwind start"
-	@echo "  requirements		 Create requirements.txt file"
+	@echo "  lint				 Check lint"
 
 # __init__ 파일 생성
-.PHONY: init
-init:
+.PHONY: add-init
+add-init:
 	python scripts/add_init.py
+
+# 가상환경 생성 및 활성화
+.PHONY: venv
+venv:
+	python -m venv venv && source venv/bin/activate
 
 # 종속성 설치
 .PHONY: install
 install:
-	pip install . && (cd theme; cd static_src; npm install;)
+	pip install . && (cd theme; cd static_src; npm install;) && pre-commit install
 
 # Django 개발 서버 실행
 .PHONY: runserver
 runserver:
 	$(MANAGE_PY) runserver
 
-# 마이그레이션 파일 생성
-.PHONY: migrations
-migrations:
-	$(MANAGE_PY) makemigrations
-
 # common.auth 마이그레이션 파일 생성
 .PHONY: migrations-auth
 migrations-auth:
 	$(MANAGE_PY) makemigrations common_auth
+
+# 마이그레이션 파일 생성
+.PHONY: migrations
+migrations:
+	$(MANAGE_PY) makemigrations common_auth
+	$(MANAGE_PY) makemigrations
 
 # 데이터베이스 마이그레이션 적용
 .PHONY: migrate
@@ -85,7 +91,7 @@ tree:
 css:
 	$(MANAGE_PY) tailwind start
 
-# requirements 생성
-.PHONY: requirements
-requirements:
-	pip freeze > requirements.txt
+# lint 생성
+.PHONY: lint
+lint:
+	pre-commit run --all-files

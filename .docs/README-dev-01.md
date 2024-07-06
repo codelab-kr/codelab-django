@@ -9,23 +9,14 @@
 ❯ pyenv local 3.12.3
 ```
 
-### Install Poetry
-```shell
-❯ curl -sSL https://install.python-poetry.org | python3 - --uninstall # delete
-❯ curl -sSL https://install.python-poetry.org | python3 -
-❯ poetry --version
-```
-
 ## 프로젝트 생성
 ### Create Django Project
 ```shell
 ❯ mkdir django_starter && cd django_starter
 ❯ git init
-# > make gitignore # python
+# vs-code 상단 > make gitignore # python
 ❯ mkdir -p common/auth && mkdir -p services/blog
-❯ poetry init --no-interaction
-❯ poetry shell
-❯ poetry add django djangorestframework
+❯ pip install django djangorestframework
 ```
 
 ### Setting dev tools
@@ -35,8 +26,8 @@
 ❯ touch {.editorconfig,.flake8} # 작성
 ❯ vi .pre-commit-config.yaml  # 작성
 ❯ vi pyproject.toml  # 설정 추가
-❯ poetry add --group dev pre-commit flake8
-❯ poetry run pre-commit install
+❯ pip install pre-commit flake8
+❯ pre-commit install
 ```
 
 ### common > auth
@@ -91,11 +82,11 @@ urlpatterns = [
 name = 'services.blog.apps.post'
 ❯ vi blog/settings.py
 INSTALLED_APPS = [...'services.blog.apps.post']
-❯ poetry run python -m services.blog.manage makemigrations post
+❯ python -m services.blog.manage makemigrations post
 Migrations for 'post':
   services/blog/apps/post/migrations/0001_initial.py
     - Create model Post
-❯ poetry run python -m services.blog.manage migrate
+❯ python -m services.blog.manage migrate
 Operations to perform:
   Apply all migrations: admin, auth, post, common_auth, contenttypes, sessions
 Running migrations:
@@ -115,10 +106,10 @@ https://django-tailwind.readthedocs.io/en/latest/installation.html
 
 Install
 ```shell
-❯ poetry add 'django-tailwind[reload]'
+❯ pip install 'django-tailwind[reload]'
 ❯ vi services/blog/blog/settings.py
 INSTALLED_APPS = [...'tailwind']
-❯ poetry run python -m services.blog.manage tailwind init
+❯ python -m services.blog.manage tailwind init
 ❯ vi services/blog/blog/settings.py
 ALLOWED_HOSTS = ['127.0.0.1']
 INTERNAL_IPS = ['127.0.0.1']
@@ -127,16 +118,11 @@ TAILWIND_APP_NAME = 'theme'
 if DEBUG:  # type: ignore # noqa: F821
     INSTALLED_APPS.extend(['django_browser_reload'])  # type: ignore # noqa: F821
     MIDDLEWARE.insert(-1, 'django_browser_reload.middleware.BrowserReloadMiddleware')  # type: ignore # noqa: F821
-❯ poetry run python -m services.blog.manage tailwind install
+❯ python -m services.blog.manage tailwind install
 ❯ vi services/blog/blog/urls.py
  path("__reload__/", include("django_browser_reload.urls")),
 ```
 
-Use
-```html
-
-
-```
 
 ### Add templates
 ```shell
@@ -177,9 +163,9 @@ TEMPLATES = [
 - [x] 설정 파일 분리
 
 
-
+테스트 긴 버전
 ```shell
-❯ poetry run python -m services.blog.manage test services.blog.apps.post.tests
+❯ python -m services.blog.manage test services.blog.apps.post.tests
 /Users/codelab/Documents/works/django_starter
 Found 2 test(s).
 Creating test database for alias 'default'...
@@ -190,11 +176,11 @@ Ran 2 tests in 0.001s
 
 OK
 Destroying test database for alias 'default'...
-
 ```
 
 
-## cf. poetry 대신 setup.cfg, setup.py 이용 시
+
+## cf. setup.cfg, setup.py 이용 시
 ```shell
 python -m venv venv
 source venv/bin/activate  # macOS/Linux
@@ -208,3 +194,8 @@ pre-commit run --all-files
 
 
 ```
+
+
+
+## TODO
+- [X] poetry 제거 - readme 포함
