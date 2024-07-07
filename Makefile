@@ -91,7 +91,7 @@ tree:
 css:
 	$(MANAGE_PY) tailwind start
 
-# lint 생성
+# lint 실행
 .PHONY: lint
 lint:
 	pre-commit run --all-files

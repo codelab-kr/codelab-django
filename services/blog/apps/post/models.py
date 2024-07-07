@@ -6,6 +6,7 @@ from django.db import models
 class Post(models.Model):
     title = models.CharField(max_length=500)
     image = models.URLField(max_length=500)
+    verse = models.TextField(null=True, blank=True)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

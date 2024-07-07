@@ -191,6 +191,33 @@ pip install .
 
 pre-commit install
 pre-commit run --all-files
+```
+
+
+
+```shell
+### services > blog > apps > post
+❯ python -m services.blog.manage startapp
+
+```shell
+❯ mkdir -pv services/blog/apps/post
+❯ python manage.py startapp post apps/post
+❯ vi apps/post/apps.py
+# name = 'post'
+name = 'services.blog.apps.post'
+❯ vi blog/settings.py
+INSTALLED_APPS = [...'services.blog.apps.post']
+❯ python -m services.blog.manage makemigrations post
+Migrations for 'post':
+  services/blog/apps/post/migrations/0001_initial.py
+    - Create model Post
+❯ python -m services.blog.manage migrate
+Operations to perform:
+  Apply all migrations: admin, auth, post, common_auth, contenttypes, sessions
+Running migrations:
+  Applying post.0001_initial... OK
+```
+
 
 
 ```
@@ -199,3 +226,4 @@ pre-commit run --all-files
 
 ## TODO
 - [X] poetry 제거 - readme 포함
+- https://youtu.be/t-uAgI-AUxc?si=X-kzJXmh2EAmF-YX

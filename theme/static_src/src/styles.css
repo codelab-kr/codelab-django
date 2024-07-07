@@ -117,13 +117,7 @@ form p {
   align-items: center;
   margin-bottom: 1rem;
 }
-label,
-input {
-  display: inline-block;
-}
-form p label {
-  width: 7rem;
-}
+
 label {
   margin: 6px 0 3px;
 }
@@ -134,7 +128,7 @@ textarea {
 input[type='file'],
 select {
   background-color: white;
-  padding-left: 0;
+  padding-left: 10;
 }
 label[for='id_remember'] {
   width: auto;
@@ -142,6 +136,17 @@ label[for='id_remember'] {
 }
 input[name='remember'] {
   width: auto;
+}
+input[id='id_image'],
+input[type='text'],
+select[id='id_book'] {
+  display: inline-block;
+  margin: 6px 0 3px;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem; /* 라운드 스타일 */
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 .btn-red {
   @apply inline-flex bg-red-500;

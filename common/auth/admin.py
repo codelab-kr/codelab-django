@@ -31,11 +31,14 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('last_login', 'date_joined')
         }),
     )
-    add_fieldsets = ((None, {
-        'classes': ('wide', ),
-        'fields': ('username', 'email', 'phone_number', 'password1',
-                   'password2', 'is_staff', 'is_active')
-    }), )
+    add_fieldsets = (
+        (
+            None, {
+                'classes': ('wide', ),
+                'fields': ('username', 'email', 'phone_number', 'password1', 'password2', 'is_staff', 'is_active')
+            }
+        ),
+    )
     search_fields = (
         'username',
         'email',

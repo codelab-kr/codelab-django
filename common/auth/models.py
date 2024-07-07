@@ -10,8 +10,7 @@ class CustomUser(AbstractUser):
         related_name='customuser_set',
         blank=True,
         help_text=  # type: ignore # noqa: E251
-        ('The groups this user belongs to. A user will get all permissions granted to each of their groups.'
-         ),
+        ('The groups this user belongs to. A user will get all permissions granted to each of their groups.'),
         verbose_name=('groups'),
     )
     user_permissions = models.ManyToManyField(
