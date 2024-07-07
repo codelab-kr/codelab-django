@@ -17,8 +17,10 @@
             <span class="font-bold hover:underline">Lisa</span>
             <span class="text-sm text-gray-400">@lisasimpson</span>
         </a>
-        {% if post.verse %}
-        <p class="mb-10 px-4">{{ post.verse|safe }}</p>
+        {% if post.book and post.chapter_verse %}
+        <p class="px-4">{{ post.book.name }} {{ post.chapter_verse }}</p>
+        {% endif %} {% if post.verse %}
+        <p class="mb-10 px-4 bg-gray-100 p-4 border border-gray-300 rounded-lg">{{ post.verse|safe }}</p>
         {% endif %}
         <p class="text-5xl mb-10 px-4 font1">{{ post.body }}</p>
         <div class="flex items-center gap-2 text-sm mb-5 flex-wrap">

@@ -216,6 +216,11 @@ Operations to perform:
   Apply all migrations: admin, auth, post, common_auth, contenttypes, sessions
 Running migrations:
   Applying post.0001_initial... OK
+
+
+python -m services.blog.manage shell < scripts/load_data.py
+make shell < scripts/load_data.py
+
 ```
 
 

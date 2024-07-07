@@ -1,17 +1,17 @@
 from django import forms
 
-from services.blog.apps.post.books import BOOK_CHOICES
-
 from . import models
+
+# from services.blog.apps.post.data import BOOK_CHOICES
 
 
 class PostForm(forms.ModelForm):
-    book = forms.ChoiceField(choices=BOOK_CHOICES, label='책')
-    chapter_verse = forms.CharField(max_length=255, required=True, label='장/절')
+    # book = forms.ChoiceField(choices=BOOK_CHOICES, label='책')
+    # chapter_verse = forms.CharField(max_length=255, required=True, label='장/절')
 
     class Meta:
         model = models.Post
-        fields = ['title', 'image', 'book', 'chapter_verse', 'verse', 'body']
+        fields = ['title', 'image', 'book', 'chapter_verse', 'body']
         labels = {
             'body': 'Caption',
         }

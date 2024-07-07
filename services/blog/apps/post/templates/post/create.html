@@ -21,22 +21,8 @@
         </div>
         <div class="mb-4">
             {{ form.book.label_tag }}<br />
-            <input
-                type="text"
-                id="id_book_input"
-                name="book_input"
-                class="rounded-lg border-gray-300 shadow-sm"
-                x-model="book_input"
-                @input="fetchBooks"
-            />
-            <select
-                id="id_book"
-                name="book"
-                class="rounded-lg border-gray-300 shadow-sm"
-                x-show="books.length > 0"
-                x-model="book"
-                @change="fetchVerse"
-            >
+            <input type="text" id="id_book_input" name="book_input" x-model="book_input" @input="fetchBooks" />
+            <select id="id_book" name="book" x-show="books.length > 0" x-model="book" @change="fetchVerse">
                 <template x-for="item in books" :key="item.id">
                     <option :value="item.id" x-text="item.text"></option>
                 </template>
@@ -48,11 +34,10 @@
                 type="text"
                 id="id_chapter_verse"
                 name="chapter_verse"
-                class="rounded-lg border-gray-300 shadow-sm"
                 @input="fetchVerse"
             />
         </div>
-        <div id="verse-preview" class="bg-gray-100 p-4 border border-gray-300 rounded mt-4"></div>
+        <div id="verse-preview"></div>
         <div class="mb-4">
             {{ form.image.label_tag }}<br />
             {{ form.image }}

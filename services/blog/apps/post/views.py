@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_http_methods
 
-from services.blog.apps.post.books import BOOK_CHOICES
+from services.blog.apps.post.data import BOOK_CHOICES
 
 from . import forms
 from .models import Post
@@ -21,8 +21,25 @@ def book_autocomplete(request):
     return JsonResponse(results, safe=False)
 
 
+def get_verse_text(book, chapter_verse):
+    query = f'kor-{book}/{chapter_verse}'
+    url = f'http://ibibles.net/quote.php?{query}'
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        return response.text
+    else:
+        return 'Error: Unable to fetch data.'
+
+
 def post_list(request):
     posts = Post.objects.all()
+    for post in posts:
+        if post.book and post.chapter_verse:
+            post.verse = get_verse_text(post.book.id, post.chapter_verse)  # type: ignore
+        else:
+            post.verse = ''  # type: ignore
+
     return render(request, 'post/post.html', {'posts': posts})
 
 
@@ -32,18 +49,6 @@ def post_create(request):
         form = forms.PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            query = form.cleaned_data.get('query')
-
-            if query:
-                url = f'http://ibibles.net/quote.php?{query}'
-                print(url)
-                response = requests.get(url)
-
-                if response.status_code == 200:
-                    post.verse = response.text
-                else:
-                    post.verse = 'Verse not found'
-            # post.author = request.user
             post.save()
             return redirect('post_list')
     form = forms.PostForm()
