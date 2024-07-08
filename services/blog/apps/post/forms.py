@@ -2,12 +2,9 @@ from django import forms
 
 from . import models
 
-# from services.blog.apps.post.data import BOOK_CHOICES
-
 
 class PostForm(forms.ModelForm):
-    # book = forms.ChoiceField(choices=BOOK_CHOICES, label='책')
-    # chapter_verse = forms.CharField(max_length=255, required=True, label='장/절')
+    image = forms.URLField(assume_scheme='http')  # type: ignore
 
     class Meta:
         model = models.Post

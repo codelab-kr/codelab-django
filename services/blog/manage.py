@@ -5,9 +5,7 @@ from pathlib import Path
 
 
 def main():
-    print('main')
     BASE_DIR = Path(__file__).resolve().parent.parent.parent
-    print(BASE_DIR)
     sys.path.insert(0, str(BASE_DIR / 'services' / 'blog'))
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'services.blog.blog.settings')

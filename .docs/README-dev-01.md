@@ -221,6 +221,8 @@ Running migrations:
 python -m services.blog.manage shell < scripts/load_data.py
 make shell < scripts/load_data.py
 
+
+make test
 ```
 
 

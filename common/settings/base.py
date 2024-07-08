@@ -1,8 +1,6 @@
 from pathlib import Path
 
-# BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-print(BASE_DIR)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-*!ixa3sx6*+8&v13apjd7*wgcvvo#40xnycs4!k9qm0t_e-$a%'
@@ -34,7 +32,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'blog.urls'
+ROOT_URLCONF = 'services.blog.blog.urls'
 
 TEMPLATES = [
     {

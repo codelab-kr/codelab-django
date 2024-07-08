@@ -26,9 +26,11 @@ help:
 	@echo "  superuser    		 Create a superuser for the Django admin."
 	@echo "  shell               Open the Django shell."
 	@echo "  test                Run the test suite."
+	@echo "  coverage            Create coverage file."
 	@echo "  tree                Display the project directory structure."
-	@echo "  css 				 tailwind start"
-	@echo "  lint				 Check lint"
+	@echo "  css 				 tailwind start."
+	@echo "  lint				 Check lints."
+	@echo "  clean				 Clean build files."
 
 # __init__ 파일 생성
 .PHONY: add-init
@@ -79,7 +81,11 @@ shell:
 # 테스트 실행
 .PHONY: test
 test:
-	$(MANAGE_PY) test
+	python -m pytest --cov=services.blog
+
+# coverage file 생성
+coverage:
+	python -m pytest --cov=services.blog --cov-report=html
 
 # 프로젝트 디렉토리 구조 출력
 .PHONY: tree
@@ -95,3 +101,8 @@ css:
 .PHONY: lint
 lint:
 	pre-commit run --all-files
+
+# build files 삭제
+.PHONY: clean
+clean:
+	rm -rf dist build
