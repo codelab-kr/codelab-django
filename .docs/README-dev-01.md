@@ -238,3 +238,7 @@ pip install ".[dev]"
 ## TODO
 - [X] poetry 제거 - readme 포함
 - https://youtu.be/t-uAgI-AUxc?si=X-kzJXmh2EAmF-YX
+
+- [ ] mixin 적용
+- [ ] user 등 추가
+- [ ] 가입 추가

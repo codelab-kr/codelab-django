@@ -1,10 +1,6 @@
-from .base import *
-
 DEBUG = False
+ALLOWED_HOSTS += ['your-production-domain.com']  # type: ignore # noqa: F821
 
-ALLOWED_HOSTS += ['your-production-domain.com']
-
-# 프로덕션 환경에서의 추가 설정 (예: 보안, 실제 데이터베이스 등)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

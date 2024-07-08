@@ -13,5 +13,3 @@ max-complexity = 12
 max-Linenumber = 500
 max-line-length = 119
 multiline-quotes = double
-per-file-ignores =
-    cooking_core/project/settings/templates/settings.loc.py:F821

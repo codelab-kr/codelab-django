@@ -1,13 +1,3 @@
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*!ixa3sx6*+8&v13apjd7*wgcvvo#40xnycs4!k9qm0t_e-$a%'
-
-INTERNAL_IPS = ['127.0.0.1']
-ALLOWED_HOSTS = ['']
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,12 +26,14 @@ ROOT_URLCONF = 'services.blog.blog.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'BACKEND':
+        'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'services' / 'blog' / 'templates',  # 서비스별 템플릿
-            BASE_DIR / 'common' / 'templates'  # 공통 템플릿
+            BASE_DIR / 'services' / 'blog' / 'templates',  # type: ignore # noqa: F821
+            BASE_DIR / 'common' / 'templates'  # type: ignore # noqa: F821
         ],
-        'APP_DIRS': True,
+        'APP_DIRS':
+        True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -53,12 +45,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'blog.wsgi.application'
+WSGI_APPLICATION = 'services.blog.blog.wsgi.application'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # type: ignore # noqa: F821
     }
 }
 
@@ -92,6 +84,6 @@ TAILWIND_APP_NAME = 'theme'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'common/static',  # 공통 정적 파일
-    BASE_DIR / 'services' / 'blog' / 'static',  # 서비스별 정적 파일
+    BASE_DIR / 'common/static',  # type: ignore # noqa: F821
+    BASE_DIR / 'services' / 'blog' / 'static',  # type: ignore # noqa: F821
 ]
