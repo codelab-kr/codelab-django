@@ -31,6 +31,9 @@ help:
 	@echo "  css 				 tailwind start."
 	@echo "  lint				 Check lints."
 	@echo "  clean				 Clean build files."
+	@echo "  bandit				 Run bandit."
+	@echo "  whl				 Make wheel build file."
+
 
 # __init__ 파일 생성
 .PHONY: add-init
@@ -38,14 +41,14 @@ add-init:
 	python scripts/add_init.py
 
 # 가상환경 생성 및 활성화
-.PHONY: venv
+.PHONY: .venv
 venv:
-	python -m venv venv && source venv/bin/activate
+	python -m venv .venv && source .venv/bin/activate
 
 # 종속성 설치
 .PHONY: install
 install:
-	pip install . && (cd theme; cd static_src; npm install;) && pre-commit install
+	pip install . && pip install ".[dev]" && (cd theme; cd static_src; npm install;) && pre-commit install
 
 # Django 개발 서버 실행
 .PHONY: runserver
@@ -90,7 +93,7 @@ coverage:
 # 프로젝트 디렉토리 구조 출력
 .PHONY: tree
 tree:
-	tree -I '__pycache__|*.pyc|*.pyo|theme'
+	tree -I '__pycache__|*.pyc|*.pyo|theme' > tree
 
 # tailwind 실행
 .PHONY: css
@@ -106,3 +109,14 @@ lint:
 .PHONY: clean
 clean:
 	rm -rf dist build
+
+# Bandit 보안 검사 실행
+.PHONY: bandit
+bandit:
+	python -m bandit -c bandit.yaml -r services.blog
+
+# wheel build file 생성
+.PHONY: whl
+whl:
+	pip install build
+	python -m build --wheel

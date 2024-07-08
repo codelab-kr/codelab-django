@@ -182,8 +182,8 @@ Destroying test database for alias 'default'...
 
 ## cf. setup.cfg, setup.py 이용 시
 ```shell
-python -m venv venv
-source venv/bin/activate  # macOS/Linux
+python -m venv .venv
+source .venv/bin/activate  # macOS/Linux
 # pip install -r requirements.txt
 
 pip install .
@@ -223,6 +223,10 @@ make shell < scripts/load_data.py
 
 
 make test
+
+pip install dist/django_starter-0.1.0-py2.py3-none-any.whl
+
+pip install ".[dev]"
 ```
 
 
