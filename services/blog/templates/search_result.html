@@ -1,0 +1,24 @@
+<!-- templates/search_results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h2>Search Results for "{{ query }}"</h2>
+
+    <h3>Posts</h3>
+    {% for post in post_results %}
+        <p>{{ post.title }} - {{ post.content }}</p>
+    {% empty %}
+        <p>No posts found.</p>
+    {% endfor %}
+
+    <h3>Comments</h3>
+    {% for comment in comment_results %}
+        <p>{{ comment.text }}</p>
+    {% empty %}
+        <p>No comments found.</p>
+    {% endfor %}
+</body>
+</html>

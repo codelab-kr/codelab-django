@@ -47,9 +47,7 @@
                 <a href="{% url 'post_create' %}">Create Post</a>
             </li>
             <li>{% comment %} <a href="{% url 'account:user_list' %}">People</a> {% endcomment %}</li>
-            <li>
-                {% comment %} <a href="{% url 'tasks:index' %}">Tasks</a> {% endcomment %}
-            </li>
+            <li>{% comment %} <a href="{% url 'tasks:index' %}">Tasks</a> {% endcomment %}</li>
             <li x-data="{ dropdownOpen: false }" class="relative">
                 <a
                     @click="dropdownOpen = !dropdownOpen"
@@ -76,10 +74,13 @@
                     x-transition:enter-end="opacity-100 translate-y-0 scale-100"
                 >
                     <ul class="hoverlist [&>li>a]:justify-end">
-                        <li>{% comment %} <a href="{% url 'account:dashboard' %}">My Profile</a> {% endcomment %}</li>
-                        <li>{% comment %} <a href="{% url 'account:edit' %}">Edit Profile</a> {% endcomment %}</li>
+                        {% comment %}
+                        <li><a href="{% url 'account:dashboard' %}">My Profile</a></li>
+                        {% endcomment %} {% comment %}
+                        <li><a href="{% url 'account:edit' %}">Edit Profile</a></li>
+                        {% endcomment %}
                         <li>
-                            {% comment %} <form id="logout-form" method="POST" action="{% url 'account:logout' %}"> {% endcomment %}
+                            <form id="logout-form" method="POST" action="{% url 'account:logout' %}">
                                 {% csrf_token %}
                                 <a href="#" onclick="document.getElementById('logout-form').submit()">Logout</a>
                             </form>
@@ -95,8 +96,8 @@
             <li>
                 <a href="/">Home</a>
             </li>
-            <li>{% comment %} <a href="{% url 'account:login' %}">Login</a> {% endcomment %}</li>
-            <li>{% comment %} <a href="{% url 'account:register' %}">Register</a> {% endcomment %}</li>
+            <li><a href="{% url 'account:login' %}">Login</a></li>
+           <li><a href="{% url 'account:register' %}">Register</a></li>
         </ul>
         {% endif %}
     </nav>

@@ -70,3 +70,13 @@ def get_verse(request):
 
     html = render_to_string('post/verse_preview.html', {'verse': verse})
     return HttpResponse(html)
+
+
+def search_view(request):
+    query = request.GET.get('q')
+    post_results = Post.objects.search(query)  # type: ignore
+    context = {
+        'query': query,
+        'post_results': post_results,
+    }
+    return render(request, 'search_results.html', context)

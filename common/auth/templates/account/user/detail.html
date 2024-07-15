@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}{{ user.get_full_name }}{% endblock %}
+{% block content %}
+    <h1>{{ user.get_full_name }}</h1>
+    <div class="profile-info">
+        {% if user.profile.photo and user.profile.photo_exists %}
+            <img src="{% thumbnail user.profile.photo 400x400 %}"  class="user-detail">
+        {% else %}
+            <img src="{% static 'image/default.jpg' %}"  class="user-detail">
+        {% endif %}
+    </div>
+    {% with total_followers=user.followers.count %}
+        <div x-data="{
+            url: '{% url "account:user_follow" %}',
+            id: '{{ user.id }}',
+            action: '{% if request.user in user.followers.all %}un{% endif %}follow',
+            totalFollowers: {{ total_followers }},
+            follow: function() {
+                var options = {
+                    method: 'POST',
+                    headers: {'X-CSRFToken': csrftoken},
+                    mode: 'same-origin',
+                    body: new FormData()
+                };
+                options.body.append('id', this.id);
+                options.body.append('action', this.action);
+                fetch(this.url, options)
+                .then(response => response.json())
+                .then(data => {
+                    if (data['status'] === 'ok') {
+                      this.totalFollowers = this.action === 'follow' ? this.totalFollowers + 1 : this.totalFollowers - 1;
+                      this.action = this.action === 'follow' ? 'unfollow' : 'follow';
+                    }
+                });
+            }
+        }">
+            <span class="count">
+                <span x-text="totalFollowers" class="total"></span>
+                follower{{ total_followers|pluralize }}
+            </span>
+            <a href="#" x-on:click.prevent="follow" x-text="action" class="follow button"></a>
+        </div>
+    {% endwith %}
+{% endblock %}

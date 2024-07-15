@@ -53,7 +53,7 @@ install:
 # Django 개발 서버 실행
 .PHONY: runserver
 runserver:
-	$(MANAGE_PY) runserver
+	$(MANAGE_PY) runserver 8001
 
 # common.auth 마이그레이션 파일 생성
 .PHONY: migrations-auth

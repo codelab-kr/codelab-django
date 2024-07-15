@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}User Login{% endblock %}
+{% load crispy_forms_tags i18n %}
+{% block content %}
+<div class="w-96 mx-auto my-auto py-16">
+    <h2 class="text-2xl font-bold mb-10">{% trans 'Sign In' %}</h2>
+
+    {% crispy form %}
+    <br>
+    <div class="py-4 text-center">
+       <button form="id-register" type="submit">{% trans 'Sign In' %}</button>
+    </div>
+    <p>Don't have an account? <a href="{% url 'account:register' %}">Register here</a></p>
+    <p>Forgot your password? <a href="{% url 'auth_password_reset' %}">Reset it here</a></p>
+    <p class="google">
+        {% load socialaccount %}
+        <a href="{% provider_login_url 'google' %}">Google</a>
+    </p>
+</div>
+{% endblock %}
