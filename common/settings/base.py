@@ -57,7 +57,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ROOT_URLCONF = 'services.blog.blog.urls'
+ROOT_URLCONF = 'services.blog.site.urls'
 
 TEMPLATES = [
     {
@@ -80,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'services.blog.blog.wsgi.application'
+WSGI_APPLICATION = 'services.blog.site.wsgi.application'
 
 DATABASES = {
     'default': {

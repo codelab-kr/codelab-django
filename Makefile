@@ -1,6 +1,6 @@
 # 프로젝트 설정
 PROJECT_MODULE := services.blog
-SETTINGS_MODULE := services.blog.blog.settings
+SETTINGS_MODULE := services.blog.site.settings
 
 # Python 명령어
 PYTHON := python

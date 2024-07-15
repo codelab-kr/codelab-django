@@ -1,1 +1,1 @@
-from ..blog.settings import *  # type: ignore # noqa: F401
+from ..site.settings import *  # type: ignore # noqa: F401
