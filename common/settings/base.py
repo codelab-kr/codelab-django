@@ -59,7 +59,7 @@ TEMPLATES = [
         'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'services' / 'blog' / 'templates',  # type: ignore # noqa: F821
-            BASE_DIR / 'common' / 'templates'  # type: ignore # noqa: F821
+            BASE_DIR / 'common' / 'auth' / 'templates'  # type: ignore # noqa: F821
         ],
         'APP_DIRS':
         True,
@@ -114,7 +114,7 @@ TAILWIND_APP_NAME = 'theme'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'common/static',  # type: ignore # noqa: F821
+    BASE_DIR / 'common' / 'static',  # type: ignore # noqa: F821
     BASE_DIR / 'services' / 'blog' / 'static',  # type: ignore # noqa: F821
 ]
 
@@ -129,20 +129,20 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # 콘솔에 �
 # EMAIL_HOST_PASSWORD = 'your_password'
 
 # django-allauth 설정
-ACCOUNT_ACTIVATION_DAYS = 7  # 며칠 동안 계정 활성화 링크가 유효한지 설정
 REGISTRATION_AUTO_LOGIN = True  # 회원가입 후 자동으로 로그인
+ACCOUNT_ACTIVATION_DAYS = 7  # 며칠 동안 계정 활성화 링크가 유효한지 설정
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_CONFIRMATION_HMAC = True  # (옵션) 보안을 강화하기 위한 설정
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-SOCIALACCOUNT_ENABLED = True
 ACCOUNT_UNIQUE_EMAIL = True  # 이메일 고유성을 유지
 ACCOUNT_EMAIL_REQUIRED = True  # 이메일 필수
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+SOCIALACCOUNT_ENABLED = True
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
@@ -153,4 +153,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         }
     }
+}
+
+ACCOUNT_FORMS = {
+    'signup': 'common.auth.forms.CustomSignupForm',
 }

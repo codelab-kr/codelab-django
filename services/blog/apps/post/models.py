@@ -2,15 +2,16 @@ import uuid
 
 from django.db import models
 
+from common.models.managers import SearchManager
+from common.models.mixins import CreatedUpdatedMixin
 
-class Post(models.Model):
+
+class Post(CreatedUpdatedMixin):
     title = models.CharField(max_length=500)
-    image = models.URLField(max_length=500)
+    image = models.URLField(max_length=500, null=True, blank=True)
     book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='posts', null=True, blank=True)
     chapter_verse = models.CharField(max_length=100, null=True, blank=True)
     body = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(
         max_length=100,
         default=uuid.uuid4,  # type: ignore
@@ -19,11 +20,13 @@ class Post(models.Model):
         editable=False,
     )
 
-    def __str__(self):
-        return str(self.title)
+    objects = SearchManager()
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return str(self.title)
 
 
 class Book(models.Model):

@@ -1,14 +1,18 @@
-# # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 # import pytest
 
+# from common.auth import forms as f
+
 # class TestLogin:
+
 #     @pytest.mark.django_db
 #     def test_login(self):
 #         form = f.Login({})
 #         assert not form.is_valid()
 
 # class TestSignUp:
+
 #     @pytest.mark.django_db
 #     def test_signup(self):
 #         form = f.SignUp({})
