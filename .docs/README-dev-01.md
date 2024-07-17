@@ -241,4 +241,7 @@ pip install ".[dev]"
 
 - [ ] mixin 적용
 - [ ] user 등 추가
-- [ ] 가입 추가
+- [X] 가입 추가
+
+
+http://127.0.0.1:8000/accounts/google/login/callback/

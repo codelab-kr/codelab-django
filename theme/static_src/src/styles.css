@@ -134,11 +134,15 @@ label[for='id_remember'] {
   width: auto;
   margin-right: 0.5rem;
 }
-input[name='remember'] {
+input[id='remember'] {
   width: auto;
 }
 input[id='id_image'],
 input[type='text'],
+input[id='id_email'],
+input[id='id_password'],
+input[id='id_password1'],
+input[id='id_password2'],
 select[id='id_book'] {
   display: inline-block;
   margin: 6px 0 3px;

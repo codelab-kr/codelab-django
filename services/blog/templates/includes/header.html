@@ -47,9 +47,7 @@
                 <a href="{% url 'post_create' %}">Create Post</a>
             </li>
             <li>{% comment %} <a href="{% url 'account:user_list' %}">People</a> {% endcomment %}</li>
-            <li>
-                {% comment %} <a href="{% url 'tasks:index' %}">Tasks</a> {% endcomment %}
-            </li>
+            <li>{% comment %} <a href="{% url 'tasks:index' %}">Tasks</a> {% endcomment %}</li>
             <li x-data="{ dropdownOpen: false }" class="relative">
                 <a
                     @click="dropdownOpen = !dropdownOpen"
@@ -79,7 +77,7 @@
                         <li>{% comment %} <a href="{% url 'account:dashboard' %}">My Profile</a> {% endcomment %}</li>
                         <li>{% comment %} <a href="{% url 'account:edit' %}">Edit Profile</a> {% endcomment %}</li>
                         <li>
-                            {% comment %} <form id="logout-form" method="POST" action="{% url 'account:logout' %}"> {% endcomment %}
+                            <form id="logout-form" method="POST" action="{% url 'account_logout' %}">
                                 {% csrf_token %}
                                 <a href="#" onclick="document.getElementById('logout-form').submit()">Logout</a>
                             </form>
@@ -95,8 +93,8 @@
             <li>
                 <a href="/">Home</a>
             </li>
-            <li>{% comment %} <a href="{% url 'account:login' %}">Login</a> {% endcomment %}</li>
-            <li>{% comment %} <a href="{% url 'account:register' %}">Register</a> {% endcomment %}</li>
+            <li><a href="{% url 'account_login' %}">Login</a></li>
+            <li><a href="{% url 'account_signup' %}">Register</a></li>
         </ul>
         {% endif %}
     </nav>
