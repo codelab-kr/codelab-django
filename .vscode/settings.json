@@ -1,24 +1,36 @@
 {
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.autoImportCompletions": true,
-    "emmet.includeLanguages": {
-      "django-html": "html"
-    },
-    "[python]": {
-      "editor.defaultFormatter": "eeyore.yapf",
-      "editor.codeActionsOnSave": {
-        "source.organizeImports.ruff": "explicit"
-      }
-    },
-    "editor.formatOnSave": true,
-    "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "search.exclude": {
-      "**/.yarn": true,
-      "**/.pnp.*": true
-    },
-    "cSpell.words": [
-      "Lates"
-    ]
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "eeyore.yapf",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+  "editor.formatOnSave": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "cSpell.words": [
+    "Lates"
+  ],
+  "python.analysis.extraPaths": [
+    "./common/auth"
+  ],
+  "[html]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null
+  },
+  "html.format.enable": false,
+  "[django-html]": {
+      "editor.formatOnSave": false,
+      "editor.defaultFormatter": null
   }
+}
