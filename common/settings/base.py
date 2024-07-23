@@ -51,31 +51,25 @@ AUTHENTICATION_BACKENDS = (
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 CRISPY_TEMPLATE_PACK = 'tailwind'
 
-ROOT_URLCONF = 'services.blog.site.urls'
+ROOT_URLCONF = 'common.auth.urls'
 
 TEMPLATES = [
     {
-        'BACKEND':
-        'django.template.backends.django.DjangoTemplates',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'services' / 'blog' / 'templates',  # type: ignore # noqa: F821
             BASE_DIR / 'common' / 'auth' / 'templates'  # type: ignore # noqa: F821
         ],
-        'APP_DIRS':
-        True,
+        'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                # `allauth` needs this from django
-                'django.template.context_processors.request',
+            'context_processors': [  # 모든 템플릿에서 전역적으로 사용할 수 있는 함수를 만들어야 할 때 유용
+                'django.template.context_processors.debug',  # 요청에서 실행된 SQL 쿼리 목록을 출력하는 콘텍스트의 debug와 sql_queries 변수를 설정함
+                'django.template.context_processors.request',  # 콘텍스트의 request 변수를 설정함 # `allauth` needs this from django
+                'django.contrib.auth.context_processors.auth',  # 요청의 user 변수를 설정
+                'django.contrib.messages.context_processors.messages',  # 콘텍스트에서 메시지 프레임워크를 사용해서 생성된 모든 메시지를 담는 message 변수를 설정
             ],
         },
     },
 ]
-
-WSGI_APPLICATION = 'services.blog.site.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -115,8 +109,10 @@ TAILWIND_APP_NAME = 'theme'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'common' / 'static',  # type: ignore # noqa: F821
-    BASE_DIR / 'services' / 'blog' / 'static',  # type: ignore # noqa: F821
 ]
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # type: ignore # noqa: F821
 
 # 이메일 설정
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # 콘솔에 이메일 출력 (개발용)

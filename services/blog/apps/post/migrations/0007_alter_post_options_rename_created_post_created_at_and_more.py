@@ -12,11 +12,11 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='post',
-            options={'ordering': ['-created_at']},
+            options={'ordering': ['-created']},
         ),
         migrations.RenameField(
             model_name='post',
-            old_name='created',
+            old_name='created_at',
             new_name='created_at',
         ),
         migrations.AlterField(

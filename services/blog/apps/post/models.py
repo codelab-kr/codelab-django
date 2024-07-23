@@ -23,7 +23,7 @@ class Post(CreatedUpdatedMixin):
     objects = SearchManager()
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-created']
 
     def __str__(self):
         return str(self.title)

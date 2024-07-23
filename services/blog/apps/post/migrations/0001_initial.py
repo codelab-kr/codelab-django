@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=500)),
                 ('image', models.URLField(max_length=500)),
                 ('body', models.TextField()),
-                ('created', models.DateTimeField(auto_now_add=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
                 (
                     'id',
                     models.CharField(

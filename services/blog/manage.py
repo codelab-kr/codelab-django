@@ -8,7 +8,7 @@ def main():
     BASE_DIR = Path(__file__).resolve().parent.parent.parent
     sys.path.insert(0, str(BASE_DIR / 'services' / 'blog'))
 
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'services.blog.site.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'services.blog.blog.settings')
 
     try:
         from django.core.management import execute_from_command_line
