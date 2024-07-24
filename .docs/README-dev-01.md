@@ -273,3 +273,9 @@ http://127.0.0.1:8000/accounts/google/login/callback/
 https://allauth.org/
 
 https://www.youtube.com/watch?v=2QLAc7RJ99s
+
+
+# Shop
+[X] add_service_app.py 작성하고 shop 만들기 테스트 아래는 참고
+
+ python scripts/add_service_app.py shop orders
