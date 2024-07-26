@@ -1,0 +1,28 @@
+<button onclick="requestPayment()">결제하기</button>
+<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+<script type="text/javascript">
+    const data = {
+        storeId: 'store-b4ed3cd9-c876-4737-8d2a-f605928b7967',
+        channelKey: 'channel-key-7bc04648-ad7f-4de4-9e66-05d624b28217',
+        paymentId: 'paymentId_202305231417003',
+        orderName: '반팔 티셔츠 XL',
+        totalAmount: 6000,
+        currency: 'CURRENCY_KRW',
+        payMethod: 'CARD'
+    }
+    async function requestPayment() {
+        const response = await PortOne.requestPayment(data);
+        console.log(response);
+        if (response.code != null) {
+            return alert(response.message);
+        }
+        const validation = await axios({
+            url: MY_SERVER_URL + "/payment/complete",
+            method: "POST",
+            body: {
+                txId: response.txId,
+                paymentId: response.paymentId,
+            },
+        });
+    }
+</script>

@@ -23,6 +23,9 @@ class Order(CreatedUpdatedMixin):
     def __str__(self):
         return f'Order {self.id}'  # type: ignore
 
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())  # type: ignore
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
