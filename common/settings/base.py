@@ -111,6 +111,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'common' / 'static',  # type: ignore # noqa: F821
 ]
 
+STATIC_ROOT = BASE_DIR / 'static'  # type: ignore # noqa: F821
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'  # type: ignore # noqa: F821
 

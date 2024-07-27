@@ -109,3 +109,9 @@ brew install stripe/stripe-cli/stripe
 stripe login
 stripe listen --forward-to 127.0.0.1:8000/payment/webhook/
 ```
+
+
+```shell
+brew install weasyprint
+
+```

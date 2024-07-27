@@ -5,12 +5,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-# from django.views.decorators.csrf import csrf_exempt
-# from django.http import JsonResponse
 from services.shop.apps.orders.models import Order
-
-# from .models import Payment
-# import requests
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_version = settings.STRIPE_API_VERSION
@@ -52,22 +47,7 @@ def payment_process(request):
         return render(request, 'payment/process.html', locals())
 
 
-# @csrf_exempt
-# def payment_callback(request):
-#     data = request.POST
-#     payment_id = data.get('paymentId')
-#     status = data.get('status')
-
-#     try:
-#         payment = Payment.objects.get(payment_id=payment_id)
-#         payment.status = status
-#         payment.save()
-#         return JsonResponse({'status': 'success'})
-#     except Payment.DoesNotExist:
-#         return JsonResponse({'status': 'failed', 'message': 'Payment not found'}, status=404)
-
-
-def payment_competed(request):
+def payment_completed(request):
     return render(request, 'payment/completed.html')
 
 
@@ -100,3 +80,17 @@ def payment_canceled(request):
 
 #     response = requests.post(url, json=data, headers=headers)
 #     return response.json()
+
+# @csrf_exempt
+# def payment_callback(request):
+#     data = request.POST
+#     payment_id = data.get('paymentId')
+#     status = data.get('status')
+
+#     try:
+#         payment = Payment.objects.get(payment_id=payment_id)
+#         payment.status = status
+#         payment.save()
+#         return JsonResponse({'status': 'success'})
+#     except Payment.DoesNotExist:
+#         return JsonResponse({'status': 'failed', 'message': 'Payment not found'}, status=404)

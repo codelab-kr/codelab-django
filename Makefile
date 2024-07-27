@@ -24,6 +24,7 @@ help:
 	@echo "  migrations      	 Create new database migrations."
 	@echo "  migrate             Apply database migrations."
 	@echo "  superuser    		 Create a superuser for the Django admin."
+	@echo "  collect    		 Collect static files to STATIC_ROOT."
 	@echo "  shell               Open the Django shell."
 	@echo "  test                Run the test suite."
 	@echo "  coverage            Create coverage file."
@@ -75,6 +76,11 @@ migrate:
 .PHONY: superuser
 superuser:
 	$(MANAGE_PY) createsuperuser
+
+# 슈퍼유저 생성
+.PHONY: collect
+collect:
+	$(MANAGE_PY) collectstatic
 
 # Django 쉘 실행
 .PHONY: shell
