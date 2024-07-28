@@ -20,7 +20,7 @@ http://localhost:5555/
 
 
 ## 09. 결제
-https://stripe.com/  --> 한국에 실제 서버스하기 부적학함
+https://stripe.com/  --> 한국에 실제 서버스하기 부적합함
 https://docs.stripe.com/payments/local-markets/korea
 https://dashboard.stripe.com/settings/account
 

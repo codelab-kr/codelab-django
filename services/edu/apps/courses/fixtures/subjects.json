@@ -1,0 +1,42 @@
+[
+{
+  "model": "courses.subject",
+  "pk": 1,
+  "fields": {
+    "created": "2024-07-27T23:14:58.116Z",
+    "updated": "2024-07-27T23:14:58.116Z",
+    "title": "Math",
+    "slug": "math"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 2,
+  "fields": {
+    "created": "2024-07-27T23:15:09.960Z",
+    "updated": "2024-07-27T23:15:09.960Z",
+    "title": "Music",
+    "slug": "music"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 3,
+  "fields": {
+    "created": "2024-07-27T23:16:03.556Z",
+    "updated": "2024-07-27T23:16:03.556Z",
+    "title": "Programming",
+    "slug": "programming"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 4,
+  "fields": {
+    "created": "2024-07-27T23:16:16.950Z",
+    "updated": "2024-07-27T23:16:16.950Z",
+    "title": "Art",
+    "slug": "art"
+  }
+}
+]

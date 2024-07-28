@@ -18,7 +18,7 @@ if not os.path.exists(service_directory):
     # 필요한 디렉토리 생성
     os.makedirs(os.path.join(service_directory, 'templates'), exist_ok=True)
     os.makedirs(os.path.join(service_directory, 'static'), exist_ok=True)
-    os.makedirs(os.path.join(service_directory, 'apps', app_name), exist_ok=True)
+    os.makedirs(os.path.join(service_directory, 'apps'), exist_ok=True)
     os.makedirs(os.path.join(service_directory, 'tests'), exist_ok=True)
 
     # settings.py 파일 경로 설정
@@ -34,6 +34,8 @@ if not os.path.exists(service_directory):
 INSTALLED_APPS += ['services.{service_name}.apps.{app_name}']  # type: ignore # noqa: F821
 ROOT_URLCONF = 'services.{service_name}.{service_name}.urls'
 WSGI_APPLICATION = 'services.{service_name}.{service_name}.wsgi.application'
+TEMPLATES[0]['DIRS'] += BASE_DIR / 'services' / '{service_name}' / 'templates',  # type: ignore # noqa: F821
+STATICFILES_DIRS += BASE_DIR / 'services' / '{service_name}' / 'static',  # type: ignore # noqa: F821
 """
         file.write(lines)
 
@@ -69,7 +71,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('common.auth.urls')),
-     path('', include('services.{service_name}.apps.{app_name}.urls', namespace='{service_name}')),
+    path('', include('services.{service_name}.apps.{app_name}.urls', namespace='{service_name}')),
 ]
 
 if settings.DEBUG:
@@ -82,11 +84,13 @@ if settings.DEBUG:
     with open(manage_path, 'r') as file:
         manage = file.read()
 
+    manage = manage.replace('import sys', """import sys
+from pathlib import Path""")
     manage = manage.replace(
         f"os.environ.setdefault('DJANGO_SETTINGS_MODULE', '{service_name}.settings')",
         f"""BASE_DIR = Path(__file__).resolve().parent.parent.parent
-        sys.path.insert(0, str(BASE_DIR / 'services' / '{service_name}'))
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'services.{service_name}.{service_name}.settings')"""
+    sys.path.insert(0, str(BASE_DIR / 'services' / '{service_name}'))
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'services.{service_name}.{service_name}.settings')"""
     )
 
     with open(manage_path, 'w') as file:
@@ -94,16 +98,19 @@ if settings.DEBUG:
 
 # 서비스 디렉토리로 이동
 os.chdir(service_directory)
+print(os.getcwd())
+print(app_directory)
 
 # app 디렉토리가 없으면 생성
 if not os.path.exists(app_directory):
     os.makedirs(app_directory)
+    print('app')
 
     # 애플리케이션 생성
     subprocess.run(['python', 'manage.py', 'startapp', app_name, f'apps/{app_name}'])
     apps_path = os.path.join(service_directory, 'apps', app_name, 'apps.py')
     urls_path = os.path.join(service_directory, 'apps', app_name, 'urls.py')
-
+    print('app2')
     # apps.py 파일 수정
     with open(apps_path, 'r') as file:
         apps = file.read()

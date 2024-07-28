@@ -6,4 +6,4 @@ class CreatedUpdatedMixin(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        abstract = True
+        abstract = True  # 추상모델임을 나타냄
