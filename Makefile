@@ -1,8 +1,10 @@
+# export SERVICE=edu  # blog shop
 # python -m services.edu.manage runserver
 
 # 프로젝트 설정
-PROJECT_MODULE := services.edu
-SETTINGS_MODULE := services.edu.edu.settings
+SERVICE ?= edu
+PROJECT_MODULE := services.$(SERVICE)
+SETTINGS_MODULE := services.$(SERVICE).$(SERVICE).settings
 
 # Python 명령어
 PYTHON := python
@@ -92,11 +94,11 @@ shell:
 # 테스트 실행
 .PHONY: test
 test:
-	python -m pytest --cov=services.edu
+	python -m pytest --cov=$(PROJECT_MODULE)
 
 # coverage file 생성
 coverage:
-	python -m pytest --cov=services.edu --cov-report=html
+	python -m pytest --cov=$(PROJECT_MODULE) --cov-report=html
 
 # 프로젝트 디렉토리 구조 출력
 .PHONY: tree
@@ -121,7 +123,7 @@ clean:
 # Bandit 보안 검사 실행
 .PHONY: bandit
 bandit:
-	python -m bandit -c bandit.yaml -r services.edu
+	python -m bandit -c bandit.yaml -r $(PROJECT_MODULE)
 
 # wheel build file 생성
 .PHONY: whl
