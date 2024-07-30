@@ -5,7 +5,7 @@ from . import views
 # app_name = 'course'
 
 urlpatterns = [
-    path('course/mine/', views.ManageCourseListView.as_view(), name='course_manage_list'),
+    path('', views.CourseListView.as_view(), name='course_list'),
     path('course/mine/', views.ManageCourseListView.as_view(), name='course_manage_list'),
     path('course/create/', views.CourseCreateView.as_view(), name='course_create'),
     path('course/<pk>/edit/', views.CourseUpdateView.as_view(), name='course_edit'),

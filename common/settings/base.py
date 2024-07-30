@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     # Third-party
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
     'crispy_forms',
     'crispy_tailwind',
     'tailwind',
@@ -106,6 +107,15 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': 'redis://127.0.0.1:6379'
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        # 'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
 
 # 언어 코드와 시간대 설정
