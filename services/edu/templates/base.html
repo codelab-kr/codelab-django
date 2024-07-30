@@ -1,4 +1,5 @@
-{% load static tailwind_tags %} {% load static %}
+{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,8 +10,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+        <title>{% block title %}Edu{% endblock %}</title>
         <link href="{% static "css/base.css" %}" rel="stylesheet">
-        <title>{% block title %}Shop{% endblock %}</title>
         {% tailwind_css %}
     </head>
     <body class="bg-gray-100">
@@ -27,6 +28,7 @@
         {% endif %} {% block layout %}
         <div id="content" class="block max-w-3xl mx-auto my-12 px-6">{% block content %}{% endblock %}</div>
         {% endblock %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5sortable/0.14.0/html5sortable.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
         <script src="//unpkg.com/htmx.org@2.0.0"></script>
         <script src="//unpkg.com/alpinejs" defer></script>

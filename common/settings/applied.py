@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ENVIRONMENT = os.getenv('DJANGO_ENVIRONMENT', 'development')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'None')
 DEBUG = False
-INTERNAL_IPS = ['127.0.0.1']
+INTERNAL_IPS = ['127.0.0.1']  # django-debug-toolbar가 나타나는 IP들
 ALLOWED_HOSTS = ['']
 
 include(

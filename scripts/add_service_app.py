@@ -98,19 +98,19 @@ from pathlib import Path""")
 
 # 서비스 디렉토리로 이동
 os.chdir(service_directory)
-print(os.getcwd())
-print(app_directory)
+# print(os.getcwd())
+# print(app_directory)
 
 # app 디렉토리가 없으면 생성
 if not os.path.exists(app_directory):
     os.makedirs(app_directory)
-    print('app')
+    # print('app')
 
     # 애플리케이션 생성
     subprocess.run(['python', 'manage.py', 'startapp', app_name, f'apps/{app_name}'])
     apps_path = os.path.join(service_directory, 'apps', app_name, 'apps.py')
     urls_path = os.path.join(service_directory, 'apps', app_name, 'urls.py')
-    print('app2')
+    # print('app2')
     # apps.py 파일 수정
     with open(apps_path, 'r') as file:
         apps = file.read()

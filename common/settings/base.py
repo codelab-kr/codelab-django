@@ -16,20 +16,26 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     # Third-party
+    'debug_toolbar',
     'rest_framework',
     'crispy_forms',
     'crispy_tailwind',
     'tailwind',
     'theme',
+    'embed_video',
+    'redisboard',
 
     # Apps
     'common.auth',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # django-debug-toolbar
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',  # 사이트 단위 캐시 (응답 시 캐시)
+    'django.middleware.common.CommonMiddleware',  # 설정한 요청 데이터에 접근
+    # 'django.middleware.cache.FetchFromCacheMiddleware',  # 사이트 단위 캐시 (요청 시 캐시))
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -92,6 +98,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CACHES = {
+    'default': {
+        # 'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        # 'LOCATION': '127.0.0.1:11211',
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379'
+    }
+}
 
 # 언어 코드와 시간대 설정
 LANGUAGE_CODE = 'ko-kr'
@@ -156,3 +171,7 @@ SOCIALACCOUNT_PROVIDERS = {
 ACCOUNT_FORMS = {
     'signup': 'common.auth.forms.CustomSignupForm',
 }
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 60 * 15  # 15 분
+CACHE_MIDDLEWARE_KEY_PREFIX = 'edu'

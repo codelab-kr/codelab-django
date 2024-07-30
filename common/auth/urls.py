@@ -8,6 +8,7 @@ urlpatterns = [
     path('users/', UserListView.as_view(), name='user-list'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # django-allauth URL 패턴 포함
+    path('__debug__/', include('debug_toolbar.urls'))  # django-debug-toolbar
 ]
 
 if settings.DEBUG:
