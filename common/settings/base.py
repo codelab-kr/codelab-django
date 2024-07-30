@@ -1,5 +1,6 @@
 # Application definition
 INSTALLED_APPS = [
+    'daphne',
     # Django 기본 앱
     'django.contrib.admin',
     'django.contrib.auth',
@@ -59,6 +60,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 CRISPY_TEMPLATE_PACK = 'tailwind'
 
 ROOT_URLCONF = 'common.auth.urls'
+ASGI_APPLICATION = 'services.edu.edu.asgi.application'
 
 TEMPLATES = [
     {
@@ -185,3 +187,12 @@ ACCOUNT_FORMS = {
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 60 * 15  # 15 분
 CACHE_MIDDLEWARE_KEY_PREFIX = 'edu'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],
+        },
+    },
+}

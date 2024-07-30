@@ -28,6 +28,8 @@
         {% endif %} {% block layout %}
         <div id="content" class="block max-w-3xl mx-auto my-12 px-6">{% block content %}{% endblock %}</div>
         {% endblock %}
+        {% block include_js %}
+        {% endblock %}
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5sortable/0.14.0/html5sortable.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
         <script src="//unpkg.com/htmx.org@2.0.0"></script>

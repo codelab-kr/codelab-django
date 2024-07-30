@@ -6,6 +6,7 @@ urlpatterns = [
     path('', include('common.auth.urls')),
     path('', include('services.edu.apps.courses.urls')),
     path('students/', include('services.edu.apps.students.urls')),
+    path('chat/', include('services.edu.apps.chat.urls', namespace='chat')),
     path('api/', include('services.edu.apps.courses.api.urls')),
 ]
 

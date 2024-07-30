@@ -1,9 +1,9 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from .authentication import CustomTokenAuthentication
-from .models import CustomUser
-from .serializers import UserSerializer
+from ..authentication import CustomTokenAuthentication
+from ..models import CustomUser
+from ..serializers import UserSerializer
 
 
 class UserListView(generics.ListAPIView):
