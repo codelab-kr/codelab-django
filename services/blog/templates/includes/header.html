@@ -1,72 +1,37 @@
-<header
-    x-data="{ mobilenavOpen: false }"
-    class="header-container"
->
+{% load static %}
+<header x-data="{ mobilenavOpen: false }" class="header-container">
     <div class="header-main">
         <logo>
             <a class="logo-link" href="/">
-                <img class="logo-image" src="https://img.icons8.com/small/64/ffffff/fire-heart.png" />
-                <span class="site-name">Awesome Shop </span>
+                <img class="logo-image" src="{% static 'images/fire-heart.png' %}" alt="Logo">
+                <span class="site-name">Awesome Shop</span>
             </a>
         </logo>
         <mobileicon class="mobile-icon">
-            <a
-                @click="mobilenavOpen = !mobilenavOpen"
-                class="mobile-icon-btn"
-            >
-                <img
-                    x-show="!mobilenavOpen"
-                    class="menu-icon"
-                    src="https://img.icons8.com/small/64/ffffff/menu.png"
-                />
-                <img
-                    x-show="mobilenavOpen"
-                    x-cloak
-                    class="close-icon"
-                    src="https://img.icons8.com/small/64/ffffff/delete-sign.png"
-                />
+            <a @click="mobilenavOpen = !mobilenavOpen" class="mobile-icon-btn">
+                <img x-show="!mobilenavOpen" class="menu-icon" src="{% static 'images/menu.png' %}" alt="Menu">
+                <img x-show="mobilenavOpen" x-cloak class="close-icon" src="{% static 'images/delete-sign.png' %}" alt="Close">
             </a>
         </mobileicon>
     </div>
-    <nav
-        x-show="mobilenavOpen"
-        x-cloak
-        class="nav-container"
-        x-transition:enter="transition-enter"
-        x-transition:enter-start="transition-enter-start"
-        x-transition:enter-end="transition-enter-end"
-    >
+    <nav x-show="mobilenavOpen" x-cloak class="nav-container"
+         x-transition:enter="transition-enter"
+         x-transition:enter-start="transition-enter-start"
+         x-transition:enter-end="transition-enter-end">
         {% if request.user.is_authenticated %}
         <ul class="nav-items">
             <li><a href="/">Home</a></li>
-            <li>
-                <a href="{% url 'post_create' %}">Create Post</a>
-            </li>
+            <li><a href="{% url 'post_create' %}">Create Post</a></li>
             <li x-data="{ dropdownOpen: false }" class="user-dropdown">
-                <a
-                    @click="dropdownOpen = !dropdownOpen"
-                    @click.away="dropdownOpen = false"
-                    class="user-dropdown-link"
-                >
-                    <img
-                        class="user-avatar"
-                        src="https://pbs.twimg.com/profile_images/508601156767997952/fFTdKUf2_400x400.jpeg"
-                    />
+                <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="user-dropdown-link">
+                    <img class="user-avatar" src="{% static 'images/fFTdKUf2_400x400.jpeg' %}" alt="User Avatar">
                     {{ user.username }}
-                    <img
-                        x-bind:class="dropdownOpen && 'rotate-180 duration-300'"
-                        class="dropdown-arrow"
-                        src="https://img.icons8.com/small/32/777777/expand-arrow.png"
-                    />
+                    <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="dropdown-arrow" src="{% static 'images/expand-arrow.png' %}" alt="Expand Arrow">
                 </a>
-                <div
-                    x-show="dropdownOpen"
-                    x-cloak
-                    class="dropdown-menu"
-                    x-transition:enter="transition-enter"
-                    x-transition:enter-start="transition-enter-start"
-                    x-transition:enter-end="transition-enter-end"
-                >
+                <div x-show="dropdownOpen" x-cloak class="dropdown-menu"
+                     x-transition:enter="transition-enter"
+                     x-transition:enter-start="transition-enter-start"
+                     x-transition:enter-end="transition-enter-end">
                     <ul class="dropdown-list">
                         {% comment %} <li><a href="{% url 'account:dashboard' %}">My Profile</a></li>
                         <li><a href="{% url 'account:edit' %}">Edit Profile</a></li> {% endcomment %}
