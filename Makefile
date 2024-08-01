@@ -1,8 +1,11 @@
 # export SERVICE=edu  # blog shop
+# export PORT=8003
+
 # python -m services.edu.manage runserver
 
 # 프로젝트 설정
-SERVICE ?= edu
+SERVICE ?= blog
+PORT ?= 8001
 PROJECT_MODULE := services.$(SERVICE)
 SETTINGS_MODULE := services.$(SERVICE).$(SERVICE).settings
 
@@ -58,7 +61,7 @@ install:
 # Django 개발 서버 실행
 .PHONY: runserver
 runserver:
-	$(MANAGE_PY) runserver
+	$(MANAGE_PY) runserver $(PORT)
 
 # common.auth 마이그레이션 파일 생성
 .PHONY: migrations-auth

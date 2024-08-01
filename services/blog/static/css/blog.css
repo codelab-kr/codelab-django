@@ -7,15 +7,6 @@
   --black: #1f2937;
   --font1: 'Lobster', sans-serif;
 }
-/* h1 {
-  @apply text-4xl font-bold mb-4;
-}
-h2 {
-  @apply text-2xl font-bold mb-3;
-}
-h3 {
-  @apply text-lg font-bold;
-} */
 .font1 {
   font-family: var(--font1);
 }

@@ -1,24 +1,23 @@
-from django.contrib.auth import authenticate, login
+# from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, FormView, ListView
+from django.views.generic import DetailView, FormView, ListView  # , CreateView
 
 from services.edu.apps.courses.models import Course
 
-from .forms import CourseEnrollForm, StudentRegistrationForm
+from .forms import CourseEnrollForm  # , StudentRegistrationForm
 
+# class StudentRegistrationView(CreateView):
+#     template_name = 'students/student/registration.html'
+#     form_class = StudentRegistrationForm
+#     success_url = reverse_lazy('student_course_list')
 
-class StudentRegistrationView(CreateView):
-    template_name = 'students/student/registration.html'
-    form_class = StudentRegistrationForm
-    success_url = reverse_lazy('student_course_list')
-
-    def form_valid(self, form):
-        result = super().form_valid(form)
-        cd = form.cleaned_data
-        user = authenticate(username=cd['username'], password=cd['password1'])
-        login(self.request, user)
-        return result
+#     def form_valid(self, form):
+#         result = super().form_valid(form)
+#         cd = form.cleaned_data
+#         user = authenticate(username=cd['username'], password=cd['password1'])
+#         login(self.request, user)
+#         return result
 
 
 class StudentEnrollCourseView(LoginRequiredMixin, FormView):

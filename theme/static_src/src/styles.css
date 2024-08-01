@@ -1,8 +1,7 @@
 @tailwind base;
 @tailwind components;
-/* @tailwind utilities; */
 
-/* 커스텀 클래스 정의 */
+/* Custom Components */
 @layer components {
   .button {
     @apply px-4 py-2 bg-blue-500 text-white rounded;
@@ -12,7 +11,7 @@
   }
 }
 
-/* 공통 스타일 */
+/* Common Styles */
 .flex-center {
   @apply flex items-center;
 }
@@ -33,7 +32,7 @@
   @apply w-full h-full;
 }
 
-/* Header 스타일 */
+/* Header Styles */
 .header-container {
   @apply flex-center justify-between px-8 bg-gray-800 h-20 text-white sticky z-40;
 }
@@ -72,7 +71,7 @@
 }
 
 .nav-items {
-  @apply flex-col-center h-full -translate-y-10 md:translate-y-0;
+  @apply flex flex-center gap-6 h-full -translate-y-10 md:translate-y-0;
 }
 
 .user-dropdown {
@@ -80,15 +79,15 @@
 }
 
 .user-dropdown-link {
-  @apply cursor-pointer select-none;
+  @apply cursor-pointer select-none flex-col-center;
 }
 
 .user-avatar {
-  @apply h-8 w-8 rounded-full object-cover;
+  @apply h-8 w-8 rounded-full object-cover mr-2;
 }
 
 .dropdown-arrow {
-  @apply w-4;
+  @apply w-4 ml-2;
 }
 
 .dropdown-menu {
@@ -111,7 +110,7 @@
   @apply opacity-100 translate-y-0 scale-100;
 }
 
-/* Hero 섹션 스타일 */
+/* Hero Section Styles */
 .hero-container {
   @apply grid bg-gray-700 text-white text-center bg-cover z-10 relative;
   background-image: url('https://live.staticflickr.com/65535/49909538937_3255dcf9e7_b.jpg');
@@ -137,7 +136,7 @@
   @apply button;
 }
 
-/* Sidebar 스타일 */
+/* Sidebar Styles */
 .sidebar {
   @apply md:!block col-span-full md:col-span-1 lg:mr-[20%] order-1 md:order-2;
 }
@@ -156,10 +155,6 @@
 
 .card {
   @apply p-4;
-}
-
-.hoverlist {
-  @apply list-none p-0 m-0;
 }
 
 .highlight > a {
@@ -207,3 +202,15 @@
 .comment-meta {
   @apply text-sm font-light text-gray-500 shrink-0;
 }
+
+h1 {
+  @apply text-4xl font-bold mb-4;
+}
+h2 {
+  @apply text-2xl font-bold mb-3;
+}
+h3 {
+  @apply text-lg font-bold;
+}
+
+/* @tailwind utilities; */

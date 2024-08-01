@@ -66,7 +66,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'common' / 'auth' / 'templates'  # type: ignore # noqa: F821
+            BASE_DIR / 'common' / 'templates',  # type: ignore # noqa: F821
+            BASE_DIR / 'common' / 'auth' / 'templates',  # type: ignore # noqa: F821
         ],
         'APP_DIRS': True,
         'OPTIONS': {
