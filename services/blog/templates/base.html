@@ -1,4 +1,5 @@
-{% load static tailwind_tags %} {% load static %}
+{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
         <title>{% block title %}Awesome Django App{% endblock %}</title>
         {% tailwind_css %}
+        <link href="{% static "css/blog.css" %}" rel="stylesheet">
     </head>
     <body class="bg-gray-100">
         {% include 'includes/header.html' %}
@@ -23,7 +25,8 @@
             </li>
             {% endfor %}
         </ul>
-        {% endif %} {% block layout %}
+        {% endif %}
+        {% block layout %}
         <div id="content" class="block max-w-3xl mx-auto my-12 px-6">{% block content %}{% endblock %}</div>
         {% endblock %}
         <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
