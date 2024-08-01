@@ -1,17 +1,49 @@
 @tailwind base;
 @tailwind components;
-/* @tailwind utilities; */
+@tailwind utilities;
 
+/* 커스텀 클래스 정의 */
+@layer components {
+  .button {
+    @apply px-4 py-2 bg-blue-500 text-white rounded;
+  }
+  .hoverlist {
+    @apply list-none p-0 m-0;
+  }
+}
+
+/* 공통 스타일 */
+.flex-center {
+  @apply flex items-center;
+}
+
+.text-bold {
+  @apply font-bold;
+}
+
+.flex-col-center {
+  @apply flex flex-col md:flex-row gap-8 md:gap-0 justify-center;
+}
+
+.flex-item-center {
+  @apply flex items-center justify-between;
+}
+
+.full-size {
+  @apply w-full h-full;
+}
+
+/* Header 스타일 */
 .header-container {
-  @apply md:flex items-center justify-between px-8 bg-gray-800 h-20 text-white sticky z-40;
+  @apply flex-center justify-between px-8 bg-gray-800 h-20 text-white sticky z-40;
 }
 
 .header-main {
-  @apply flex items-center justify-between h-20;
+  @apply flex-item-center h-20;
 }
 
 .logo-link {
-  @apply flex items-center gap-1;
+  @apply flex-center gap-1;
 }
 
 .logo-image {
@@ -27,7 +59,7 @@
 }
 
 .mobile-icon-btn {
-  @apply h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg;
+  @apply h-12 w-12 flex-center cursor-pointer hover:bg-gray-700 rounded-lg;
 }
 
 .menu-icon,
@@ -40,7 +72,7 @@
 }
 
 .nav-items {
-  @apply flex items-center flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0;
+  @apply flex-col-center h-full -translate-y-10 md:translate-y-0;
 }
 
 .user-dropdown {
@@ -64,7 +96,7 @@
 }
 
 .dropdown-list {
-  /* @apply hoverlist; */
+  @apply hoverlist;
 }
 
 .transition-enter {
@@ -77,4 +109,101 @@
 
 .transition-enter-end {
   @apply opacity-100 translate-y-0 scale-100;
+}
+
+/* Hero 섹션 스타일 */
+.hero-container {
+  @apply grid bg-gray-700 text-white text-center bg-cover z-10 relative;
+  background-image: url('https://live.staticflickr.com/65535/49909538937_3255dcf9e7_b.jpg');
+}
+
+.overlay {
+  @apply col-start-1 row-start-1 bg-gray-800 bg-opacity-40 full-size;
+}
+
+.hero-content {
+  @apply col-start-1 row-start-1 py-24 px-10;
+}
+
+.hero-title {
+  @apply text-6xl text-bold;
+}
+
+.hero-description {
+  @apply text-lg text-bold mb-5;
+}
+
+.hero-button {
+  @apply button;
+}
+
+/* Sidebar 스타일 */
+.sidebar {
+  @apply md:!block col-span-full md:col-span-1 lg:mr-[20%] order-1 md:order-2;
+}
+
+.enter-transition {
+  @apply duration-300 ease-out;
+}
+
+.enter-start {
+  @apply opacity-0 -mt-96;
+}
+
+.enter-end {
+  @apply opacity-100 mt-0;
+}
+
+.card {
+  @apply p-4;
+}
+
+.hoverlist {
+  @apply list-none p-0 m-0;
+}
+
+.highlight > a {
+  @apply flex-center;
+}
+
+.icon {
+  @apply w-8 h-8 object-cover mr-2;
+}
+
+.category-name {
+  @apply text-bold text-sm;
+}
+
+.section-header {
+  @apply flex-center;
+}
+
+.section-icon {
+  @apply w-7 mr-2 -mt-3;
+}
+
+.post-item,
+.comment-item {
+  @apply flex-item-center justify-between;
+}
+
+.post-info,
+.comment-info {
+  @apply flex-center truncate;
+}
+
+.post-thumbnail,
+.comment-user-icon,
+.user-icon {
+  @apply w-10 h-10 rounded-lg object-cover mr-3 shrink-0;
+}
+
+.post-author,
+.comment-text {
+  @apply text-bold text-sm mr-1 truncate;
+}
+
+.post-meta,
+.comment-meta {
+  @apply text-sm font-light text-gray-500 shrink-0;
 }
