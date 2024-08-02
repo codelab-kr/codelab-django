@@ -41,6 +41,7 @@ help:
 	@echo "  clean				 Clean build files."
 	@echo "  bandit				 Run bandit."
 	@echo "  whl				 Make wheel build file."
+	@echo "  redis				 Start redis docker."
 
 
 # __init__ 파일 생성
@@ -133,3 +134,8 @@ bandit:
 whl:
 	pip install build
 	python -m build --wheel
+
+# wheel build file 생성
+.PHONY: redis
+redis:
+	docker run -it --rm --name redis -p 6379:6379 redis

@@ -163,7 +163,6 @@ class CourseListView(TemplateResponseMixin, View):
             subjects = Subject.objects.annotate(total_courses=Count('courses'))
             cache.set('all_subjects', subjects)
         all_course = Course.objects.annotate(total_modules=Count('modules'))
-        # courses = Course.objects.annotate(total_modules=Count('modules'))
         if subject:
             subject = get_object_or_404(Subject, slug=subject)
             key = f'subject_{subject.id}_courses'  # type: ignore
@@ -185,5 +184,17 @@ class CourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['enroll_form'] = CourseEnrollForm(initial={'course': self.object})  # type: ignore
+        user = self.request.user
+        course = self.object  # type: ignore
+
+        if user.is_authenticated:
+            is_enrolled = course.students.filter(id=user.id).exists()  # type: ignore
+            course_enrolled = course.students.filter(id=user.id)  # type: ignore
+            context['is_enrolled'] = is_enrolled
+            if not is_enrolled:
+                context['enroll_form'] = CourseEnrollForm(initial={'course': course})
+            else:
+                context['course_enrolled'] = course_enrolled
+        else:
+            context['is_enrolled'] = False
         return context

@@ -1,2 +1,5 @@
 {% extends "common/base_header.html" %}
 {% block extra_title %}Awesome Edu{% endblock %}
+{% block extra_dropdown %}
+    <li><a href="{% url 'student_course_list' %}">My couurses</a></li>
+{% endblock %}
