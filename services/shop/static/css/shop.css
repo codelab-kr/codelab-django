@@ -1,9 +1,19 @@
-@import url(//fonts.googleapis.com/css?family=Ubuntu);
+@import url(//fonts.googleapis.com/css?family=Roboto:500,300,400);
 
 body {
   margin: 0;
-  padding: 0;
-  font-family: helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #333;
+}
+
+a {
+  color: #5993bb;
+  text-decoration: none;
+}
+
+ul {
+  float: left;
 }
 
 h1,
@@ -12,405 +22,316 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: normal;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
-a {
-  text-decoration: none;
-  color: #5993bb;
-}
-
-a:hover {
-  color: #77b6e2;
-}
-
-a.button,
-input[type='submit'] {
-  color: #fff;
-  background: #5993bb;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 14px;
-  border: 0;
-}
-
-a.button.light {
-  color: #666;
-  background: #ededed;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-table {
+h1 {
+  background: #efefef;
   width: 100%;
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-
-table th,
-table td {
-  text-align: left;
-  font-size: 14px;
-  padding: 10px;
+  overflow: auto;
+  padding: 20px 0 20px 40px;
   margin: 0;
 }
 
-tbody tr:nth-child(odd) {
-  background: #efefef;
-}
-
-tbody tr.subtotal {
-  background: #ccc;
-}
-
-thead th,
-tbody tr.total {
-  background: #5993bb;
-  color: #fff;
-  font-weight: bold;
-}
-
-table.cart {
-  margin-bottom: 40px;
-}
-
-table.cart img {
-  width: 180px;
-}
-
-tbody td.num {
-  text-align: right;
-}
-
-td input[type='submit'] {
-  font-size: 12px;
-  padding: 4px 10px;
-}
-
-form p label,
-form p input {
+.module {
+  padding: 10px 20px;
   float: left;
-  clear: both;
+  width: 600px;
 }
 
-form p label {
-  font-size: 14px;
-  padding-bottom: 4px;
+.module h3 {
+  margin: 20px 0 0;
+  padding: 0;
+  width: 100%;
 }
 
-form p input {
-  width: 300px;
-  font-size: 13px;
-  margin-bottom: 10px;
-  padding: 10px 12px;
-  border: 0;
-  background: #efefef;
-  color: #666;
-  border-radius: 4px;
-}
-
-ul.errorlist {
+.module p {
+  margin: 10px 0 20px;
+  width: 100%;
   float: left;
-  color: #ff0000;
-  clear: both;
-  font-size: 13px;
-  margin: 0 0 0 10px;
-  padding: 10px 0;
 }
 
 #header {
-  padding: 10px 100px;
-  font-size: 18px;
+  background: #444;
   overflow: auto;
-}
-
-#subheader {
-  background: #ececec;
-  color: #444;
-  padding: 15px 100px;
-  overflow: auto;
+  padding: 10px 20px;
+  border-bottom: 6px solid #444;
 }
 
 #header .logo {
-  font-family: 'Ubuntu', sans-serif;
-  float: left;
-  color: #333;
-  font-size: 22px;
-  margin-right: 10%;
-}
-
-#subheader .cart {
-  float: right;
-  padding-top: 4px;
-}
-
-#content {
-  padding: 0 100px;
-  overflow: hidden;
-}
-
-#sidebar {
-  width: 220px;
-  padding: 30px 20px 0 0;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 24px;
+  color: #fff;
   float: left;
 }
 
-#sidebar ul {
-  margin: 0;
-  padding: 0;
-}
-
-#sidebar ul li {
-  margin: 0;
-  list-style: none;
-  padding: 10px 14px;
-}
-
-#sidebar ul li a {
-  display: block;
-}
-
-#sidebar ul li.selected {
-  background: #5993bb;
-  border-radius: 4px;
-}
-
-#sidebar ul li.selected a {
+#header a {
   color: #fff;
 }
 
-#main {
-  float: left;
-  width: 96%;
-  margin-right: -220px;
-  overflow: hidden;
-}
-
-.product-list .item {
-  width: 25%;
-  padding: 10px 20px 10px 0;
-  float: left;
-  text-align: center;
-  line-height: 1.2;
-}
-
-.product-list .item img {
-  width: 100%;
-  margin-bottom: 8px;
-}
-
-.product-detail {
-  text-align: justify;
-}
-
-.product-detail .price {
-  color: #333;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.product-detail img {
-  width: 40%;
-  float: left;
-  padding: 0 20px 20px 0;
-}
-
-.product-detail h1 {
-  margin-bottom: 0;
-}
-
-.product-detail h2 {
-  margin-top: 10px;
-}
-
-.order-form {
-  float: left;
-}
-
-.order-info {
+#header .menu {
+  list-style: none;
   float: right;
-  width: 300px;
-  background: #efefef;
-  padding: 10px 20px;
-  color: #333;
-  border-bottom: 4px solid #5993bb;
-}
-
-.order-info h3 {
-  color: #5993bb;
-}
-
-.order-info ul li {
   margin: 0;
   padding: 0;
-  font-size: 14px;
 }
 
-.order-info p {
-  font-weight: bold;
-  float: right;
+#header button {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
 }
 
-.order-info span {
-  float: right;
+.contents {
+  width: 20%;
+  padding: 10px;
+  float: left;
+  background: #333;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
 }
 
-.neg {
-  color: #dc1616;
-}
-
-.languages {
-  float: right;
-  padding-top: 4px;
-  font-size: 14px;
-}
-
-.languages ul {
+.contents ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  float: left;
+  width: 100%;
 }
 
-.languages ul li {
-  float: left;
-  margin: 0 0 0 10px;
+.contents ul li {
+  margin: 0 0 10px 0;
+  padding: 4px 10px 10px;
+  overflow: auto;
+  cursor: move;
+}
+
+.contents ul li.selected {
+  background: #3f3f3f;
+}
+
+.contents ul li:hover {
+  background: #3f3f3f;
+}
+
+.contents ul li.placeholder {
+  background: #333;
+  border: 1px dashed #ccc;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.contents ul span {
+  text-transform: uppercase;
+  color: #bbb;
   font-size: 14px;
 }
 
-.languages p {
+.contents ul a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+}
+
+.contents ul a:hover {
+  color: #5993bb;
+  cursor: move;
+}
+
+ul.content-types li {
+  list-style: none;
   float: left;
-  margin: 0;
+  margin: 10px;
+  background: #efefef;
+  padding: 8px 14px;
 }
 
-.recommendations {
-  clear: both;
+.hidden {
+  display: none;
 }
 
-.recommendations div {
-  float: left;
-}
-
-.recommendations img {
-  width: 200px;
-}
-
-.recommendations p {
-  clear: both;
-}
-
-.recommendations.cart {
-  width: 60%;
-  float: left;
+form p {
   overflow: auto;
 }
 
-.recommendations.cart h3 {
-  margin-top: 0;
+.errorlist {
+  color: #ae2c2c;
+  margin: 0;
 }
 
-.recommendations.cart .item {
+label {
+  float: left;
+  clear: both;
+  margin: 0 0 8px 0;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #ccc;
+  border-bottom: 3px solid #ccc;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  float: left;
+  clear: both;
+  width: 300px;
+}
+
+textarea {
+  height: 80px;
+}
+
+select {
+  width: 324px;
+}
+
+input[type='submit'],
+a.button {
+  border-radius: 5px;
+  background: #5993bb;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  border: none;
+  padding: 10px 20px;
+  margin: 20px 0;
+}
+
+a.secondary-button {
+  border: 3px solid #5993bb;
+  padding: 10px 20px;
+  margin: 10px 0;
+}
+
+input[type='submit']:hover,
+a.button:hover {
+  background: #3fad37;
+}
+
+ul#course-modules {
+  list-style: none;
+  overflow: auto;
+}
+
+ul#course-modules textarea {
+  width: 600px;
+  height: 120px;
+}
+
+ul#course-modules li {
+  padding: 20px;
+  overflow: auto;
+  cursor: move;
+  user-select: none;
+}
+
+ul#course-modules li:nth-child(even) {
+  background: #efefef;
+}
+
+ul#course-modules li:hover {
+  background: #ccc;
+}
+
+#module-contents div {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+#module-contents div.placeholder {
+  border: 1px dashed #ccc;
+}
+
+#module-contents form {
+  margin: 0;
+  padding: 0;
+}
+
+#module-contents input[type='submit'] {
+  color: #3fad37;
+  background: none;
+  margin: -20px 0 0;
+  padding: 0;
+  float: left;
+  text-transform: none;
+}
+
+#module-contents div:hover {
+  cursor: move;
+}
+
+.course-info {
+  border: 1px solid #ccc;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  width: 400px;
+  overflow: auto;
+}
+
+.course-info a {
   margin-right: 10px;
 }
 
-.recommendations.cart img {
-  width: 120px;
+.helptext {
+  color: #ccc;
+  padding-left: 20px;
 }
 
-/* braintree hosted fields */
-form div.field {
-  font-size: 13px;
-  color: #666;
-  width: 300px;
-  height: 22px;
-  margin-bottom: 10px;
-  padding: 6px 12px;
-  border: 0;
+#chat {
+  top: 64px;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  overflow-y: scroll;
+  padding-bottom: 150px;
+}
+
+#chat .message {
   background: #efefef;
-  color: #666;
+  padding: 10px 20px;
   border-radius: 4px;
+  width: auto;
+  display: inline;
+  float: left;
+  margin: 10px 10px 0;
+  min-width: 440px;
+  clear: both;
 }
 
-.header-container {
-  @apply md:flex items-center justify-between px-8 bg-gray-800 h-20 text-white sticky top-15 z-40;
+#chat .message.me {
+  display: inline;
+  float: right;
+  background: #dcede0;
+  color: #56a668;
 }
 
-.header-main {
-  @apply flex items-center justify-between h-20;
+#chat .date {
+  color: #aaa;
+  font-style: italic;
+  font-size: 12px;
 }
 
-.logo-link {
-  @apply flex items-center gap-1;
+#chat-input {
+  position: absolute;
+  bottom: 0;
+  background: #efefef;
+  width: 100%;
+  padding-top: 20px;
 }
 
-.logo-image {
-  @apply w-7 -mt-1;
-}
-
-.site-name {
-  @apply text-lg font-bold;
-}
-
-.mobile-icon {
-  @apply md:hidden;
-}
-
-.mobile-icon-btn {
-  @apply h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg;
-}
-
-.menu-icon,
-.close-icon {
-  @apply w-6 h-6 select-none;
-}
-
-.nav-container {
-  @apply md:!block bg-gray-800 h-screen w-screen md:h-auto md:w-auto -mt-20 md:mt-0 absolute md:relative z-[-1];
-}
-
-.nav-items {
-  @apply flex items-center flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0;
-}
-
-.user-dropdown {
-  @apply relative;
-}
-
-.user-dropdown-link {
-  @apply cursor-pointer select-none;
-}
-
-.user-avatar {
-  @apply h-8 w-8 rounded-full object-cover;
-}
-
-.dropdown-arrow {
-  @apply w-4;
-}
-
-.dropdown-menu {
-  @apply absolute right-0 bg-white text-black shadow rounded-lg w-40 p-2 z-20;
-}
-
-.dropdown-list {
-  @apply hoverlist;
-}
-
-.transition-enter {
-  @apply duration-300 ease-out;
-}
-
-.transition-enter-start {
-  @apply opacity-0 -translate-y-5 scale-90;
-}
-
-.transition-enter-end {
-  @apply opacity-100 translate-y-0 scale-100;
+#chat-input input {
+  width: 96%;
+  position: left;
+  float: left;
+  display: inline;
+  margin-left: 2%;
+  margin-right: 2%;
+  padding-left: 0;
+  padding-right: 0;
 }
