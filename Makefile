@@ -41,7 +41,10 @@ help:
 	@echo "  clean				 Clean build files."
 	@echo "  bandit				 Run bandit."
 	@echo "  whl				 Make wheel build file."
+	@echo "  mq			 		 Start rabbitmq docker."
+	@echo "  celery			 	 Start celery."
 	@echo "  redis				 Start redis docker."
+	@echo "  stripe				 Start rocal stripe."
 
 
 # __init__ 파일 생성
@@ -135,7 +138,23 @@ whl:
 	pip install build
 	python -m build --wheel
 
-# wheel build file 생성
+# rabbitmq docker 실행 (비동기 작업 ex.이메일 발송)
+.PHONY: mq
+mq:
+	docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
+
+# celery 실행 (비동기 작업 ex.이메일 발송)
+.PHONY: celery
+celery:
+	celery -A services.shop.shop worker -l info
+
+# stripe local 실행 (결제)
+.PHONY: stripe
+stripe:
+	# stripe login
+	stripe listen --forward-to 127.0.0.1:8002/payment/webhook/
+
+# redis docker 실행 (캐시, 채팅)
 .PHONY: redis
 redis:
 	docker run -it --rm --name redis -p 6379:6379 redis

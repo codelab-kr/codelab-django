@@ -2,5 +2,10 @@
 {% load static %}
 {% block title %}Awesome Shop{% endblock %}
 {% block extra_head %}
-    <link href="{% static "css/shop.css" %}" rel="stylesheet">
+<link href="{% static "css/shop.css" %}" rel="stylesheet">
+{% endblock %}
+{% block layout %}
+    {% include 'includes/mycart.html' %}
+    <div id="content" class="block max-w-3xl mx-auto my-12 px-6">
+    {% block content %}{% endblock %}</div>
 {% endblock %}
