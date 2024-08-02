@@ -1,3 +1,8 @@
+DEBUG = False
+INTERNAL_IPS = ['127.0.0.1']  # django-debug-toolbar가 나타나는 IP들
+ALLOWED_HOSTS = ['127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
+
 # Application definition
 INSTALLED_APPS = [
     'daphne',
@@ -28,7 +33,7 @@ INSTALLED_APPS = [
     'redisboard',
 
     # Apps
-    'common.auth',
+    'common.auth',  # account 폼이 정의된 앱
 ]
 
 MIDDLEWARE = [
@@ -46,18 +51,6 @@ MIDDLEWARE = [
 ]
 
 SITE_ID = 1
-
-AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by email
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
-# crispy_tailwind 설정
-CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
-CRISPY_TEMPLATE_PACK = 'tailwind'
 
 ROOT_URLCONF = 'common.auth.urls'
 ASGI_APPLICATION = 'services.edu.edu.asgi.application'
@@ -81,80 +74,37 @@ TEMPLATES = [
     },
 ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # type: ignore # noqa: F821
-    }
-}
-
+# auth 설정
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'
     },
 ]
 
-CACHES = {
-    'default': {
-        # 'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
-        # 'LOCATION': '127.0.0.1:11211',
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379'
-    }
-}
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        # 'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
-}
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
-# 언어 코드와 시간대 설정
-LANGUAGE_CODE = 'ko-kr'
-TIME_ZONE = 'Asia/Seoul'
-
-# 국제화 설정
-USE_I18N = True  # 번역 시스템 활성화
-USE_L10N = True  # 현지화 형식 사용
-USE_TZ = True  # 시간대 인식(datetime-aware) 객체 사용
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'common_auth.CustomUser'
-TAILWIND_APP_NAME = 'theme'
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'common' / 'static',  # type: ignore # noqa: F821
-]
+ACCOUNT_FORMS = {
+    'signup': 'common.auth.forms.CustomSignupForm',
+}
 
-STATIC_ROOT = BASE_DIR / 'static'  # type: ignore # noqa: F821
-
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'  # type: ignore # noqa: F821
-
-# 이메일 설정
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # 콘솔에 이메일 출력 (개발용)
-# 실제 이메일 설정 예시 (Gmail)
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your_email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your_password'
-
-# django-allauth 설정
+# django-allauth
 REGISTRATION_AUTO_LOGIN = True  # 회원가입 후 자동으로 로그인
 ACCOUNT_ACTIVATION_DAYS = 7  # 며칠 동안 계정 활성화 링크가 유효한지 설정
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
@@ -170,7 +120,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 SOCIALACCOUNT_ENABLED = True
 
-# Provider specific settings
+# Provider 설정
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
@@ -181,19 +131,53 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-ACCOUNT_FORMS = {
-    'signup': 'common.auth.forms.CustomSignupForm',
+# rest framework 설정
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        # 'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
 
+# 언어 코드와 시간대 설정
+LANGUAGE_CODE = 'ko-kr'
+TIME_ZONE = 'Asia/Seoul'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 국제화 설정
+USE_I18N = True  # 번역 시스템 활성화
+USE_L10N = True  # 현지화 형식 사용
+USE_TZ = True  # 시간대 인식(datetime-aware) 객체 사용
+
+# static 파일 설정
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'common' / 'static',  # type: ignore # noqa: F821
+]
+STATIC_ROOT = BASE_DIR / 'static'  # type: ignore # noqa: F821
+
+# media 파일 설정
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # type: ignore # noqa: F821
+
+# crispy_tailwind 설정
+TAILWIND_APP_NAME = 'theme'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
+CRISPY_TEMPLATE_PACK = 'tailwind'
+
+# database 설정
+# DATABASES = {}
+
+# cache 설정
+# CACHES = {}
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 60 * 15  # 15 분
 CACHE_MIDDLEWARE_KEY_PREFIX = 'edu'
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)],
-        },
-    },
-}
+# chatting 설정
+# CHANNEL_LAYERS = {}
+
+# email 설정
+EMAIL_BACKEND = NotImplemented
