@@ -1,0 +1,19 @@
+# Python 관련 파일들
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.env
+
+# 환경 설정 파일들
+.env
+.venv
+*.env.local
+*.venv
+
+# 도커 및 기타 무시할 파일들
+Dockerfile
+docker-compose.yml
+.idea
+.vscode
+*.log

@@ -1,14 +1,14 @@
 from decimal import Decimal
 
-import stripe
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
+import stripe
 from services.shop.apps.orders.models import Order
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
-stripe.api_version = settings.STRIPE_API_VERSION
+stripe.api_key = settings.STRIPE_SECRET_KEY  # type: ignore
+stripe.api_version = settings.STRIPE_API_VERSION  # type: ignore
 
 
 def payment_process(request):

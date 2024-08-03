@@ -1,7 +1,7 @@
 DEBUG = False
-INTERNAL_IPS = ['127.0.0.1']  # django-debug-toolbar가 나타나는 IP들
-ALLOWED_HOSTS = ['127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
+INTERNAL_IPS = ['127.0.0.1', 'localhost']  # django-debug-toolbar가 나타나는 IP들
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shop']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'http://localhost']
 
 # Application definition
 INSTALLED_APPS = [
@@ -174,10 +174,18 @@ CRISPY_TEMPLATE_PACK = 'tailwind'
 # CACHES = {}
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 60 * 15  # 15 분
-CACHE_MIDDLEWARE_KEY_PREFIX = 'edu'
+CACHE_MIDDLEWARE_KEY_PREFIXㅌ = 'edu'
 
 # chatting 설정
 # CHANNEL_LAYERS = {}
 
 # email 설정
-EMAIL_BACKEND = NotImplemented
+# EMAIL_BACKEND = NotImplemented
+
+# Celery 설정
+CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//'
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'

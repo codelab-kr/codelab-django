@@ -1,10 +1,74 @@
 services:
-  app:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+
+  stripe:
+    image: stripe/stripe-cli
+    ports:
+      - '12111:12111'
+    env_file:
+      - .env
+    entrypoint:
+      [
+        'sh',
+        '-c',
+        'stripe listen --forward-to $STRIPE_FORWARD --api-key $STRIPE_SECRET_KEY',
+      ]
+    volumes:
+      - ./stripe:/app
+
+  blog:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        SERVICE: 'blog'
     restart: always
     ports:
-      - '8000:8000'
+      - '8001:8000'
     volumes:
       - .:/opt/project:z
+    env_file:
+      - .env
+
+  shop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: 'shop'
+    restart: always
+    ports:
+      - '8002:8000'
+    volumes:
+      - .:/opt/project:z
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+      - redis
+      - stripe
+
+  edu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: 'edu'
+    restart: always
+    ports:
+      - '8003:8000'
+    volumes:
+      - .:/opt/project:z
+    env_file:
+      - .env
+    depends_on:
+      - redis
