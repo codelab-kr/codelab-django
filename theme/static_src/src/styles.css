@@ -1,6 +1,6 @@
 @tailwind base;
 @tailwind components;
-
+@tailwind utilities;
 
 /* Custom Components */
 @layer components {
@@ -213,5 +213,3 @@ h2 {
 h3 {
   @apply text-lg font-bold;
 }
-
-/* @tailwind utilities; */

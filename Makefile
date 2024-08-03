@@ -1,7 +1,7 @@
 # export SERVICE=edu  # blog shop
 # export PORT=8003
 
-# python -m services.edu.manage runserver
+# python -m services.blog.manage runserver
 
 # 프로젝트 설정
 SERVICE ?= blog

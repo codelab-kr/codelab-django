@@ -1,4 +1,49 @@
+x-app: &default-app
+  build:
+    context: .
+    dockerfile: Dockerfile
+    # args:
+    #   SERVICE: 'blog'
+  volumes:
+    - .:/opt/project
+  restart: unless-stopped
+  env_file:
+    - .env
+
 services:
+  blog:
+    <<: *default-app
+    command: python -m services.blog.manage runserver 0.0.0.0:8000
+    ports:
+      - '8001:8000'
+    depends_on:
+      - tailwind
+
+  shop:
+    <<: *default-app
+    command: python -m services.shop.manage runserver 0.0.0.0:8000
+    ports:
+      - '8002:8000'
+    depends_on:
+      - tailwind
+      - rabbitmq
+      - redis
+      - stripe
+
+  edu:
+    <<: *default-app
+    command: python -m services.edu.manage runserver 0.0.0.0:8000
+    ports:
+      - '8003:8000'
+    depends_on:
+      - tailwind
+      - redis
+
+  tailwind:
+    <<: *default-app
+    command: python -m services.blog.manage tailwind start
+    tty: true
+
   rabbitmq:
     image: rabbitmq:management
     ports:
@@ -25,50 +70,64 @@ services:
     volumes:
       - ./stripe:/app
 
-  blog:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        SERVICE: 'blog'
-    restart: always
-    ports:
-      - '8001:8000'
-    volumes:
-      - .:/opt/project:z
-    env_file:
-      - .env
+  # css:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     args:
+  #       SERVICE: 'blog'
+  #   restart: always
+  #   ports:
+  #     - '8001:8000'
+  #   volumes:
+  #     - .:/opt/project:z
+  #   env_file:
+  #     - .env
 
-  shop:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        SERVICE: 'shop'
-    restart: always
-    ports:
-      - '8002:8000'
-    volumes:
-      - .:/opt/project:z
-    env_file:
-      - .env
-    depends_on:
-      - rabbitmq
-      - redis
-      - stripe
+  # blog:
+  # build:
+  #   context: .
+  #   dockerfile: Dockerfile
+  #   args:
+  #     SERVICE: 'blog'
+  # restart: always
+  # ports:
+  #   - '8001:8000'
+  # volumes:
+  #   - .:/opt/project:z
+  # env_file:
+  #   - .env
 
-  edu:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        SERVICE: 'edu'
-    restart: always
-    ports:
-      - '8003:8000'
-    volumes:
-      - .:/opt/project:z
-    env_file:
-      - .env
-    depends_on:
-      - redis
+  # shop:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     args:
+  #       SERVICE: 'shop'
+  #   restart: always
+  #   ports:
+  #     - '8002:8000'
+  #   volumes:
+  #     - .:/opt/project:z
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - rabbitmq
+  #     - redis
+  #     - stripe
+
+  # edu:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     args:
+  #       SERVICE: 'edu'
+  #   restart: always
+  #   ports:
+  #     - '8003:8000'
+  #   volumes:
+  #     - .:/opt/project:z
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - redis
