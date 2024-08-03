@@ -2,8 +2,6 @@ x-app: &default-app
   build:
     context: .
     dockerfile: Dockerfile
-    # args:
-    #   SERVICE: 'blog'
   volumes:
     - .:/opt/project
   restart: unless-stopped
@@ -69,65 +67,3 @@ services:
       ]
     volumes:
       - ./stripe:/app
-
-  # css:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     args:
-  #       SERVICE: 'blog'
-  #   restart: always
-  #   ports:
-  #     - '8001:8000'
-  #   volumes:
-  #     - .:/opt/project:z
-  #   env_file:
-  #     - .env
-
-  # blog:
-  # build:
-  #   context: .
-  #   dockerfile: Dockerfile
-  #   args:
-  #     SERVICE: 'blog'
-  # restart: always
-  # ports:
-  #   - '8001:8000'
-  # volumes:
-  #   - .:/opt/project:z
-  # env_file:
-  #   - .env
-
-  # shop:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     args:
-  #       SERVICE: 'shop'
-  #   restart: always
-  #   ports:
-  #     - '8002:8000'
-  #   volumes:
-  #     - .:/opt/project:z
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - rabbitmq
-  #     - redis
-  #     - stripe
-
-  # edu:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     args:
-  #       SERVICE: 'edu'
-  #   restart: always
-  #   ports:
-  #     - '8003:8000'
-  #   volumes:
-  #     - .:/opt/project:z
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - redis
