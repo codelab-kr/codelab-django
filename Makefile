@@ -60,7 +60,7 @@ venv:
 # 종속성 설치
 .PHONY: install
 install:
-	pip install . && pip install ".[dev]" && (cd theme; cd static_src; npm install;) && pre-commit install
+	pip install . && pip install ".[dev]" && (cd theme; cd static_src; yarn set version berry; yarn install --immutable;) && pre-commit install
 
 # Django 개발 서버 실행
 .PHONY: runserver

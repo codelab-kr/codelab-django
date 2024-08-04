@@ -11,13 +11,11 @@ ENV PYTHONPATH /opt/project
 WORKDIR /opt/project
 COPY . .
 # COPY ./scripts/entrypoint.sh /
+RUN pip install . && pip install ".[dev]"
 
 WORKDIR /opt/project/theme/static_src
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs && npm install -g yarn && yarn set version berry
 RUN yarn install --immutable
-
-WORKDIR /opt/project
-RUN pip install . && pip install ".[dev]"
 
 EXPOSE 8000
 # ENTRYPOINT ["/entrypoint.sh", "loc"]
