@@ -21,6 +21,7 @@ make install
 ## apply code changes
 ```shell
 make lint
+make collect
 ad
 cm "커밋 메시지"
 ps

@@ -7,7 +7,7 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
         exclude: >-
-          ^static/css/styles\.css$|theme/static/css/styles\.css$|\.md$|.pre-commit-config.yaml$
+          ^static/css/dist/styles\.css$|theme/static/css/dist/styles\.css$|\.md$|.pre-commit-config.yaml$
       - id: check-yaml
 
   - repo: https://github.com/pycqa/isort
