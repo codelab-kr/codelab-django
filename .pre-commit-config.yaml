@@ -7,7 +7,7 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
         exclude: >-
-          ^theme/static/css/dist/styles\.css$|\.md$|.pre-commit-config.yaml$
+          ^static/css/styles\.css$|theme/static/css/styles\.css$|\.md$|.pre-commit-config.yaml$
       - id: check-yaml
 
   - repo: https://github.com/pycqa/isort
@@ -40,7 +40,7 @@ repos:
     hooks:
       - id: build-tailwind
         name: Build Tailwind
-        entry: python -m services.blog.manage tailwind build
+        entry: sh -c "python -m services.blog.manage tailwind build" # && python -m services.blog.manage collectstatic --noinput"
         language: system
         pass_filenames: false
         stages: [commit]
