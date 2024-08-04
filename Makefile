@@ -45,6 +45,8 @@ help:
 	@echo "  celery              Start celery."
 	@echo "  redis               Start redis docker."
 	@echo "  stripe              Start rocal stripe."
+	@echo "  down                Down docker compose."
+	@echo "  up                  Up docker compose."
 
 
 # __init__ 파일 생성
@@ -158,3 +160,13 @@ stripe:
 .PHONY: redis
 redis:
 	docker run -it --rm --name redis -p 6379:6379 redis
+
+# docker down
+.PHONY: down
+down:
+	docker compose -f docker-compose.yaml down  -v --rmi all --remove-orphans
+
+# docker up
+.PHONY: up
+up:
+	docker-compose up --build
