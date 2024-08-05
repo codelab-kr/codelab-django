@@ -1,7 +1,6 @@
 ## clone from git
 ```shell
-git clone https://github.com/codelab-kr/django-starter
-git checkout dev
+git clone https://github.com/codelab-kr/codelab-django
 # copy extra files(.env & db.sqlite3)
 ```
 
