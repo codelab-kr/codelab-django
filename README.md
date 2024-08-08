@@ -2,6 +2,7 @@
 ```shell
 git clone https://github.com/codelab-kr/codelab-django
 # copy extra files(.env & codelab.db)
+cd codelab-django
 ```
 
 ## start & down with docker
