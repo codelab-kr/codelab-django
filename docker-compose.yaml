@@ -9,39 +9,43 @@ x-app: &default-app
     - .env
 
 services:
-  blog:
-    <<: *default-app
-    command: python -m services.blog.manage runserver 0.0.0.0:8000
-    ports:
-      - '8001:8000'
-    depends_on:
-      - tailwind
+  # blog:
+  #   <<: *default-app
+  #   command: python -m services.site.manage runserver 0.0.0.0:8000
+  #   ports:
+  #     - '8001:8000'
+  #   depends_on:
+  #     - tailwind
 
-  shop:
+  # shop:
+  #   <<: *default-app
+  #   command: >
+  #     sh -c "celery -A services.shop.shop worker -l info &
+  #            python -m services.shop.manage runserver 0.0.0.0:8000"
+  #   ports:
+  #     - '8002:8000'
+  #   depends_on:
+  #     - stripe
+  #     - tailwind
+  #     - rabbitmq
+  #     - redis
+
+  app:
     <<: *default-app
     command: >
-      sh -c "celery -A services.shop.shop worker -l info &
-             python -m services.shop.manage runserver 0.0.0.0:8000"
+      sh -c "celery -A services.site worker -l info &
+             python -m services.manage runserver 0.0.0.0:8000"
     ports:
-      - '8002:8000'
+      - '8000:8000'
     depends_on:
       - stripe
       - tailwind
       - rabbitmq
       - redis
 
-  edu:
-    <<: *default-app
-    command: python -m services.edu.manage runserver 0.0.0.0:8000
-    ports:
-      - '8003:8000'
-    depends_on:
-      - tailwind
-      - redis
-
   tailwind:
     <<: *default-app
-    command: python -m services.blog.manage tailwind start
+    command: python -m services.manage tailwind start
     tty: true
 
   rabbitmq:
@@ -65,7 +69,7 @@ services:
       [
         'sh',
         '-c',
-        'stripe listen --forward-to shop:8000/payment/webhook/ --api-key $STRIPE_SECRET_KEY',
+        'stripe listen --forward-to app:8000/payment/webhook/ --api-key $STRIPE_SECRET_KEY',
       ]
     volumes:
       - ./stripe:/app

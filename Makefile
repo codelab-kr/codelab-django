@@ -1,13 +1,6 @@
-# export SERVICE=edu  # blog shop
-# export PORT=8003
-
-# python -m services.blog.manage runserver
-
-# 프로젝트 설정
-SERVICE ?= blog
-PORT ?= 8001
-PROJECT_MODULE := services.$(SERVICE)
-SETTINGS_MODULE := services.$(SERVICE).$(SERVICE).settings
+PORT ?= 8000
+PROJECT_MODULE := services
+SETTINGS_MODULE := services.site.settings
 
 # Python 명령어
 PYTHON := python
@@ -69,7 +62,7 @@ install:
 runserver:
 	$(MANAGE_PY) runserver $(PORT)
 
-# common.auth 마이그레이션 파일 생성
+# services.auth 마이그레이션 파일 생성
 .PHONY: migrations-auth
 migrations-auth:
 	$(MANAGE_PY) makemigrations common_auth

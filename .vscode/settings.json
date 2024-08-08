@@ -22,7 +22,7 @@
     "Lates"
   ],
   "python.analysis.extraPaths": [
-    "./common/auth"
+    "./auth"
   ],
   "[html]": {
     "editor.formatOnSave": false,

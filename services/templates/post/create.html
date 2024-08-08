@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block content %}
+<h1>Create Post</h1>
+<div class="card !p-8">
+    <div class="flex items-center mb-6">
+        <img class="h-5 object-cover mr-1" src="https://img.icons8.com/small/96/333333/search--v1.png" />
+        <a href="https://www.flickr.com/explore" target="_blank" class="hover:underline text-gray-500"
+            >Find an image on Flickr</a
+        >
+    </div>
+    <form
+        class="form-with-validation"
+        action="{% url 'post:post_create' %}"
+        method="post"
+        enctype="multipart/form-data"
+        x-data="bookAutocomplete()"
+    >
+        {% csrf_token %}
+        <div class="mb-4">
+            {{ form.title.label_tag }}<br />
+            {{ form.title }}
+        </div>
+        <div class="mb-4">
+            {{ form.book.label_tag }}<br />
+            <input type="text" id="id_book_input" name="book_input" x-model="book_input" @input="fetchBooks" />
+            <select id="id_book" name="book" x-show="books.length > 0" x-model="book" @change="fetchVerse">
+                <template x-for="item in books" :key="item.id">
+                    <option :value="item.id" x-text="item.text"></option>
+                </template>
+            </select>
+        </div>
+        <div class="mb-4">
+            {{ form.chapter_verse.label_tag }}<br />
+            <input
+                type="text"
+                id="id_chapter_verse"
+                name="chapter_verse"
+                @input="fetchVerse"
+            />
+        </div>
+        <div id="verse-preview"></div>
+        <div class="mb-4">
+            {{ form.image.label_tag }}<br />
+            {{ form.image }}
+        </div>
+        <div class="mb-4">
+            {{ form.body.label_tag }}<br />
+            {{ form.body }}
+        </div>
+
+        <button type="submit" class="mt-1">Submit Post</button>
+        <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+    </form>
+</div>
+<script>
+    function bookAutocomplete() {
+        return {
+            book_input: "",
+            books: [],
+            book: "",
+            fetchBooks() {
+                if (this.book_input.length > 0) {
+                    fetch(`/post/book_autocomplete/?term=${this.book_input}`)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            this.books = data;
+                            if (this.books.length > 0) {
+                                this.book = this.books[0].id;
+                                this.fetchVerse();
+                            } else {
+                                this.book = "";
+                                this.clearVersePreview();
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error fetching books:", error);
+                            this.books = [];
+                            this.book = "";
+                            this.clearVersePreview();
+                        });
+                } else {
+                    this.books = [];
+                    this.book = "";
+                    this.clearVersePreview();
+                }
+            },
+            fetchVerse() {
+                const chapterVerse = document.querySelector("#id_chapter_verse").value;
+                if (this.book && chapterVerse) {
+                    fetch(`/post/get_verse/?book=${this.book}&chapter_verse=${chapterVerse}`)
+                        .then((response) => response.text())
+                        .then((data) => {
+                            document.querySelector("#verse-preview").innerHTML = data;
+                        })
+                        .catch((error) => {
+                            console.error("Error fetching verse:", error);
+                            this.clearVersePreview();
+                        });
+                } else {
+                    this.clearVersePreview();
+                }
+            },
+            clearVersePreview() {
+                document.querySelector("#verse-preview").innerHTML = "";
+            },
+        };
+    }
+</script>
+{% endblock %}

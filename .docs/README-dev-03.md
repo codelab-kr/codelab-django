@@ -25,7 +25,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> cache.get('musician')
 'DDFWFE'
 
->>> from services.edu.apps.courses.models import Subject
+>>> from services.courses.models import Subject
 >>> subjects = Subject.objects.all()
 >>> cache.set('my_s', subjects)
 >>> cache.get('my_s')
@@ -41,7 +41,7 @@ docker run -it --rm --name redis -p 6379:6379 redis
 ```shell
 ❯ make shell
 python -m services.edu.manage shell
->>> from services.edu.apps.courses.api.serializers import SubjectSerializer
+>>> from services.courses.api.serializers import SubjectSerializer
 >>> subject = Subject.objects.latest('id')
 >>> serializer = SubjectSerializer(subject)
 >>> serializer.data

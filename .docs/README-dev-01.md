@@ -51,7 +51,7 @@ def main():
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 INSTALLED_APPS = [
     'rest_framework',  # add
-    'common.auth',  # add
+    'services.auth',  # add
 ]
 # Custom user model 설정
 AUTH_USER_MODEL = 'common_auth.CustomUser'  # add
@@ -60,7 +60,7 @@ from django.contrib import admin
 from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/auth/', include('common.auth.urls')),
+    path('api/auth/', include('services.auth.urls')),
 ]
 ```
 
@@ -81,9 +81,9 @@ urlpatterns = [
 ❯ python manage.py startapp post apps/post
 ❯ vi apps/post/apps.py
 # name = 'post'
-name = 'services.blog.apps.post'
+name = 'services.post'
 ❯ vi blog/settings.py
-INSTALLED_APPS = [...'services.blog.apps.post']
+INSTALLED_APPS = [...'services.post']
 ❯ python -m services.blog.manage makemigrations post
 Migrations for 'post':
   services/blog/apps/post/migrations/0001_initial.py
@@ -167,7 +167,7 @@ TEMPLATES = [
 
 테스트 긴 버전
 ```shell
-❯ python -m services.blog.manage test services.blog.apps.post.tests
+❯ python -m services.blog.manage test services.post.tests
 /Users/codelab/Documents/works/django_starter
 Found 2 test(s).
 Creating test database for alias 'default'...
@@ -206,9 +206,9 @@ pre-commit run --all-files
 ❯ python manage.py startapp post apps/post
 ❯ vi apps/post/apps.py
 # name = 'post'
-name = 'services.blog.apps.post'
+name = 'services.post'
 ❯ vi blog/settings.py
-INSTALLED_APPS = [...'services.blog.apps.post']
+INSTALLED_APPS = [...'services.post']
 ❯ python -m services.blog.manage makemigrations post
 Migrations for 'post':
   services/blog/apps/post/migrations/0001_initial.py

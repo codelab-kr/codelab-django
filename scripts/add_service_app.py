@@ -29,7 +29,7 @@ if not os.path.exists(service_directory):
 
     # settings.py 파일 수정
     with open(settings_path, 'w') as file:
-        lines = f"""from common.settings.applied import *
+        lines = f"""from services.settings.applied import *
 
 INSTALLED_APPS += ['services.{service_name}.apps.{app_name}']  # type: ignore # noqa: F821
 ROOT_URLCONF = 'services.{service_name}.{service_name}.urls'
@@ -70,7 +70,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('common.auth.urls')),
+    path('', include('services.auth.urls')),
     path('', include('services.{service_name}.apps.{app_name}.urls', namespace='{service_name}')),
 ]
 

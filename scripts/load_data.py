@@ -1,5 +1,5 @@
-from services.blog.apps.post.data import BOOK_CHOICES
-from services.blog.apps.post.models import Book
+from services.post.data import BOOK_CHOICES
+from services.post.models import Book
 
 
 def load_books():
